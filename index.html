@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>熱門股週報 2026/05/11 ~ 05/15</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#101418;color:#d2d8df;font-family:'Segoe UI','Microsoft JhengHei',system-ui,sans-serif;font-size:16px;line-height:1.5}
+
+/* ── Layout ── */
+.layout{display:grid;grid-template-columns:1fr 540px;min-height:100vh}
+.main{padding:24px 28px;overflow-y:auto;min-width:0}
+.sidebar{background:#171d23;border-left:1px solid #2b3540;padding:16px;overflow-y:auto;position:sticky;top:0;height:100vh}
+
+/* ── Header ── */
+.hd-title{font-size:36px;font-weight:700;color:#d2d8df;letter-spacing:.01em;margin-bottom:4px}
+.hd-sub{color:#8792a0;font-size:14px;margin-bottom:18px}
+.stat-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.stat-box{background:#171d23;border:1px solid #2b3540;border-radius:9px;padding:12px 20px;min-width:110px}
+.stat-n{font-size:28px;font-weight:700;color:#6fcf97}
+.stat-lbl{font-size:14px;color:#8792a0;margin-top:2px}
+
+/* ── Sections ── */
+.sec{margin-bottom:28px}
+.sec-title{font-size:16px;font-weight:600;color:#8792a0;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid #2b3540}
+.sec-hint{font-size:11px;font-weight:400;color:#56616d;text-transform:none;letter-spacing:0;margin-left:8px;vertical-align:middle}
+
+/* ── Signal cards ── */
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.sig-card{background:#171d23;border-radius:8px;padding:14px 16px;border:1px solid #2b3540}
+.sig-title{font-weight:700;font-size:16px;display:flex;align-items:center;gap:6px;margin-bottom:6px;color:#d2d8df}
+.sig-body{color:#8792a0;font-size:16px;line-height:1.55}
+
+/* ── Ranking table ── */
+.rk-tbl{width:100%;border-collapse:collapse}
+.rk-tbl th{color:#8792a0;font-size:13px;font-weight:400;text-align:left;padding:10px 12px;border-bottom:2px solid #2b3540;white-space:nowrap;cursor:pointer;user-select:none;position:sticky;top:0;background:#171d23}
+.rk-tbl th:hover{color:#d2d8df}
+.rk-tbl td{padding:9px 12px;border-bottom:1px solid #171d23;vertical-align:middle}
+.rank-row{cursor:pointer;transition:background .12s}
+.rank-row:hover{background:#171d23}
+.rk-num{color:#56616d;font-weight:600;font-size:18px;width:32px}
+.theme-tag{padding:3px 10px;border-radius:5px;font-size:16px;font-weight:600;white-space:nowrap;display:inline-block}
+.dd{display:inline-flex;align-items:center;justify-content:center;width:30px;height:26px;border-radius:4px;font-size:15px;font-weight:600;background:#101418;color:#56616d;border:1px solid #2b3540}
+.trend-c{text-align:center;color:#56616d;font-size:18px}
+.core-b{background:#2a2419;color:#d6a85b;border:1px solid #d6a85b40;padding:2px 9px;border-radius:10px;font-size:14px;font-weight:700}
+
+/* ── Stock table ── */
+.stk-tbl{width:100%;border-collapse:collapse}
+.stk-tbl th{color:#8792a0;font-size:13px;font-weight:400;text-align:left;padding:10px 12px;border-bottom:2px solid #2b3540;white-space:nowrap;cursor:pointer;user-select:none;background:#171d23;position:sticky;top:0}
+.stk-tbl th:hover{color:#d2d8df}
+.stk-tbl th.sort-asc::after{content:' ↑';color:#6fcf97}
+.stk-tbl th.sort-desc::after{content:' ↓';color:#eb5757}
+.stk-tbl td{padding:9px 12px;border-bottom:1px solid #171d23;vertical-align:middle;white-space:nowrap}
+.stk-tbl tr:hover td{background:#171d23}
+.stock-cell{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sid-link{color:#56a7d8;text-decoration:none;font-weight:700;font-family:monospace;font-size:17px}
+.sid-link:hover{color:#8fc7e5;text-decoration:underline}
+.s-name{color:#8792a0;font-size:15px}
+
+/* ── Search ── */
+.search-bar{background:#101418;border:1px solid #2b3540;border-radius:7px;padding:8px 14px;color:#d2d8df;font-size:16px;width:280px;margin-bottom:14px;outline:none}
+.search-bar::placeholder{color:#56616d}
+.search-bar:focus{border-color:#56a7d8}
+
+/* ── Sidebar ── */
+.sd-title{font-size:16px;font-weight:600;color:#8792a0;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.sd-hint{font-size:14px;color:#56616d;margin-bottom:12px;line-height:1.6}
+.sidx-g{margin-bottom:3px;border:1px solid #2b3540;border-radius:7px;overflow:hidden}
+.sidx-g.hi{border-color:#d6a85b}
+.sidx-h{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;cursor:pointer;background:#101418;transition:background .12s;user-select:none}
+.sidx-h:hover,.sidx-h.open{background:#171d23}
+.sidx-theme{font-size:16px;font-weight:700}
+.sidx-badge{padding:2px 8px;border-radius:3px;font-size:14px;font-weight:700}
+.sidx-cnt{color:#56616d;font-size:14px}
+.sidx-arr{color:#56616d;font-size:14px;transition:transform .18s}
+.sidx-h.open .sidx-arr{transform:rotate(180deg)}
+.sidx-b{display:none;padding:9px 10px;background:#101418;border-top:1px solid #2b3540;flex-wrap:wrap;gap:6px}
+.sidx-b.open{display:flex}
+.sidx-s{color:#8792a0;text-decoration:none;font-size:15px;padding:4px 9px;background:#171d23;border-radius:5px;white-space:nowrap;transition:background .12s;line-height:1.4}
+.sidx-s:hover{background:#2b3540;color:#d2d8df}
+.sidx-s.core{color:#d6a85b;background:#2a2419;border:1px solid #d6a85b33}
+.sidx-s.core:hover{background:#332b1d;color:#e3bc75}
+.dbadge{font-size:10px;font-weight:800;color:#ff2d2d;vertical-align:super}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ══ 主欄 ══ -->
+<div class="main">
+  <div class="hd-title">熱門股週報</div>
+  <div class="hd-sub">2026/05/11 ~ 05/15 ・ 已統計：週一 / 週二 / 週三 / 週四 / 週五</div>
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-n" style="color:#56a7d8">17</div><div class="stat-lbl" style="color:#56a7d8">族群排行</div></div>
+    <div class="stat-box"><div class="stat-n" style="color:#6fcf97">58</div><div class="stat-lbl" style="color:#6fcf97">選股明細</div></div>
+    <div class="stat-box"><div class="stat-n" style="color:#ff6b6b">25</div><div class="stat-lbl" style="color:#ff6b6b"><span>★</span> 核心個股</div></div>
+    <div class="stat-box"><div class="stat-n" style="color:#9b8fd3">5/5</div><div class="stat-lbl" style="color:#9b8fd3">已統計交易日</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">本週訊號</div>
+    <div class="sig-grid"><div class="sig-card" style="border-left:3px solid #d6a85b"><div class="sig-title"><span>🏆</span>本週主流</div><div class="sig-body"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span> 出現 5 天・平均 5 檔・熱度 96%</div></div><div class="sig-card" style="border-left:3px solid #d6a85b"><div class="sig-title"><span>🔥</span>全週強勢</div><div class="sig-body"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span> <span style="background:#6fcf97;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電腦週邊</span> 每天都在熱門榜</div></div><div class="sig-card" style="border-left:3px solid #9a8f72"><div class="sig-title"><span>🌱</span>週末新興</div><div class="sig-body"><span style="background:#4869a8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">PCB/載板</span> <span style="background:#4299b4;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">伺服器/AI</span> <span style="background:#527bd0;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">記憶體</span> 週尾才出現，觀察能否延續</div></div><div class="sig-card" style="border-left:3px solid #74808c"><div class="sig-title"><span>📉</span>熱度消退</div><div class="sig-body"><span style="background:#74808c;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">品牌PC/NB</span> 週初曾上榜但未延續</div></div><div class="sig-card" style="border-left:3px solid #56a7d8"><div class="sig-title"><span>⚡</span>超高熱度</div><div class="sig-body"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span> <span style="background:#6d8fd8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">IC設計</span> <span style="background:#d4a04e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">光電</span> <span style="background:#6fcf97;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電腦週邊</span> <span style="background:#c99a4e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">面板</span> 平均熱度 ≥92%，量能極度集中</div></div><div class="sig-card" style="border-left:3px solid #9b8fd3"><div class="sig-title"><span>💎</span>核心個股</div><div class="sig-body"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span> 持續上榜：3374 精材科技、7734 印能科技、6531 愛普科技、3583 辛耘企業、4749 新應材</div></div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title"><span style="color:#56a7d8">族群排行</span><span class="sec-hint">點擊列 → 右欄定位</span></div>
+    <table class="rk-tbl" id="rk-tbl">
+      <thead><tr>
+        <th onclick="sortRank(this,0)">#</th>
+        <th onclick="sortRank(this,1)">族群</th>
+        <th style="min-width:130px;white-space:normal">出現日 · 一&nbsp;二&nbsp;三&nbsp;四&nbsp;五<br><span style="font-size:11px;font-weight:400;color:#56616d;letter-spacing:0;text-transform:none">(數字 = 當日上榜檔數)</span></th>
+        <th onclick="sortRank(this,3)">持續度</th>
+        <th onclick="sortRank(this,4)">平均熱度</th>
+        <th onclick="sortRank(this,5)">平均檔數</th>
+        <th>趨勢</th>
+        <th onclick="sortRank(this,7)">核心股</th>
+      </tr></thead>
+      <tbody>
+        <tr class="rank-row" onclick="filterSidebar('半導體')">
+          <td class="rk-num" data-val="1">1</td>
+          <td data-val="半導體">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#69bd7d;border:1px solid #69bd7d45">半導體</span>
+              <span style="font-size:10px;color:#74808c">其他</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">4</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">4</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">5</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">4</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">8</span></div></td>
+          <td data-val="5">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:100%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">5/5</span>
+            </div>
+          </td>
+          <td data-val="0.961" style="color:#d6a85b;font-weight:600">96%</td>
+          <td data-val="5.0" style="color:#74808c">5.0</td>
+          <td class="trend-c"><span style="color:#6fcf97;font-size:22px">▲</span></td>
+          <td data-val="7"><span class="core-b">7</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('IC設計')">
+          <td class="rk-num" data-val="2">2</td>
+          <td data-val="IC設計">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#6d8fd8;border:1px solid #6d8fd845">IC設計</span>
+              <span style="font-size:10px;color:#9b8fd3">半導體供應鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">4</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">6</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">3</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">3</span><span class="dd"></span></div></td>
+          <td data-val="4">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:80%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">4/5</span>
+            </div>
+          </td>
+          <td data-val="0.966" style="color:#d6a85b;font-weight:600">97%</td>
+          <td data-val="4.0" style="color:#74808c">4.0</td>
+          <td class="trend-c"><span style="color:#eb5757;font-size:22px">▼</span></td>
+          <td data-val="6"><span class="core-b">6</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('光電')">
+          <td class="rk-num" data-val="3">3</td>
+          <td data-val="光電">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#d4a04e;border:1px solid #d4a04e45">光電</span>
+              <span style="font-size:10px;color:#f2c94c">面板/光電鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd"></span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">3</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">2</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">2</span></div></td>
+          <td data-val="4">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:80%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">4/5</span>
+            </div>
+          </td>
+          <td data-val="0.977" style="color:#d6a85b;font-weight:600">98%</td>
+          <td data-val="2.0" style="color:#74808c">2.0</td>
+          <td class="trend-c"><span style="color:#6fcf97;font-size:22px">▲</span></td>
+          <td data-val="1"><span class="core-b">1</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('電腦週邊')">
+          <td class="rk-num" data-val="4">4</td>
+          <td data-val="電腦週邊">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#6fcf97;border:1px solid #6fcf9745">電腦週邊</span>
+              <span style="font-size:10px;color:#6fcf97">網通/通訊鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">3</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">2</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span></div></td>
+          <td data-val="5">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:100%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">5/5</span>
+            </div>
+          </td>
+          <td data-val="0.964" style="color:#d6a85b;font-weight:600">96%</td>
+          <td data-val="1.6" style="color:#74808c">1.6</td>
+          <td class="trend-c"><span style="color:#eb5757;font-size:22px">▼</span></td>
+          <td data-val="1"><span class="core-b">1</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('面板')">
+          <td class="rk-num" data-val="5">5</td>
+          <td data-val="面板">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#c99a4e;border:1px solid #c99a4e45">面板</span>
+              <span style="font-size:10px;color:#f2c94c">面板/光電鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd"></span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">2</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">3</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span></div></td>
+          <td data-val="4">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:80%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">4/5</span>
+            </div>
+          </td>
+          <td data-val="0.988" style="color:#d6a85b;font-weight:600">99%</td>
+          <td data-val="1.8" style="color:#74808c">1.8</td>
+          <td class="trend-c"><span style="color:#8792a0;font-size:22px">▶</span></td>
+          <td data-val="3"><span class="core-b">3</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('電子零組件')">
+          <td class="rk-num" data-val="6">6</td>
+          <td data-val="電子零組件">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#8fbd60;border:1px solid #8fbd6045">電子零組件</span>
+              <span style="font-size:10px;color:#74808c">其他</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd act" style="background:#b99a6525;color:#b99a65;border:1px solid #b99a6555">1</span><span class="dd act" style="background:#b99a6525;color:#b99a65;border:1px solid #b99a6555">2</span><span class="dd"></span><span class="dd act" style="background:#b99a6525;color:#b99a65;border:1px solid #b99a6555">2</span><span class="dd act" style="background:#b99a6525;color:#b99a65;border:1px solid #b99a6555">1</span></div></td>
+          <td data-val="4">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:80%;background:#b99a65;border-radius:3px;min-width:3px"></div>
+              <span style="color:#b99a65;font-weight:700">4/5</span>
+            </div>
+          </td>
+          <td data-val="0.89" style="color:#b99a65;font-weight:600">89%</td>
+          <td data-val="1.5" style="color:#74808c">1.5</td>
+          <td class="trend-c"><span style="color:#8792a0;font-size:22px">▶</span></td>
+          <td data-val="2"><span class="core-b">2</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('被動元件')">
+          <td class="rk-num" data-val="7">7</td>
+          <td data-val="被動元件">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#8f8980;border:1px solid #8f898045">被動元件</span>
+              <span style="font-size:10px;color:#74808c">其他</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">3</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd"></span><span class="dd"></span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span></div></td>
+          <td data-val="3">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:60%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">3/5</span>
+            </div>
+          </td>
+          <td data-val="0.98" style="color:#d6a85b;font-weight:600">98%</td>
+          <td data-val="1.7" style="color:#74808c">1.7</td>
+          <td class="trend-c"><span style="color:#eb5757;font-size:22px">▼</span></td>
+          <td data-val="1"><span class="core-b">1</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('電子通路')">
+          <td class="rk-num" data-val="8">8</td>
+          <td data-val="電子通路">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#65717e;border:1px solid #65717e45">電子通路</span>
+              <span style="font-size:10px;color:#74808c">其他</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">2</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd"></span></div></td>
+          <td data-val="4">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:80%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">4/5</span>
+            </div>
+          </td>
+          <td data-val="0.964" style="color:#d6a85b;font-weight:600">96%</td>
+          <td data-val="1.2" style="color:#74808c">1.2</td>
+          <td class="trend-c"><span style="color:#eb5757;font-size:22px">▼</span></td>
+          <td data-val="1"><span class="core-b">1</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('功率半導體')">
+          <td class="rk-num" data-val="9">9</td>
+          <td data-val="功率半導體">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#6387d3;border:1px solid #6387d345">功率半導體</span>
+              <span style="font-size:10px;color:#9b8fd3">半導體供應鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd"></span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">2</span></div></td>
+          <td data-val="4">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:80%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">4/5</span>
+            </div>
+          </td>
+          <td data-val="0.935" style="color:#d6a85b;font-weight:600">94%</td>
+          <td data-val="1.2" style="color:#74808c">1.2</td>
+          <td class="trend-c"><span style="color:#6fcf97;font-size:22px">▲</span></td>
+          <td data-val="1"><span class="core-b">1</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('網通')">
+          <td class="rk-num" data-val="10">10</td>
+          <td data-val="網通">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#5db98d;border:1px solid #5db98d45">網通</span>
+              <span style="font-size:10px;color:#6fcf97">網通/通訊鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd"></span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span></div></td>
+          <td data-val="4">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:80%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">4/5</span>
+            </div>
+          </td>
+          <td data-val="0.922" style="color:#d6a85b;font-weight:600">92%</td>
+          <td data-val="1.0" style="color:#74808c">1.0</td>
+          <td class="trend-c"><span style="color:#8792a0;font-size:22px">▶</span></td>
+          <td data-val="1"><span class="core-b">1</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('PCB/載板')">
+          <td class="rk-num" data-val="11">11</td>
+          <td data-val="PCB/載板">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#4869a8;border:1px solid #4869a845">PCB/載板</span>
+              <span style="font-size:10px;color:#9b8fd3">半導體供應鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd"></span><span class="dd"></span><span class="dd"></span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span></div></td>
+          <td data-val="2">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:40%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">2/5</span>
+            </div>
+          </td>
+          <td data-val="0.968" style="color:#d6a85b;font-weight:600">97%</td>
+          <td data-val="1.0" style="color:#74808c">1.0</td>
+          <td class="trend-c"><span style="color:#8792a0;font-size:22px">▶</span></td>
+          <td data-val="0"><span style="color:#56616d">—</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('電機')">
+          <td class="rk-num" data-val="12">12</td>
+          <td data-val="電機">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#9b8fd3;border:1px solid #9b8fd345">電機</span>
+              <span style="font-size:10px;color:#74808c">其他</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd"></span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd"></span><span class="dd"></span></div></td>
+          <td data-val="2">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:40%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">2/5</span>
+            </div>
+          </td>
+          <td data-val="0.922" style="color:#d6a85b;font-weight:600">92%</td>
+          <td data-val="1.0" style="color:#74808c">1.0</td>
+          <td class="trend-c"><span style="color:#8792a0;font-size:22px">▶</span></td>
+          <td data-val="1"><span class="core-b">1</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('晶圓代工')">
+          <td class="rk-num" data-val="13">13</td>
+          <td data-val="晶圓代工">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#5f86d6;border:1px solid #5f86d645">晶圓代工</span>
+              <span style="font-size:10px;color:#9b8fd3">半導體供應鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd"></span><span class="dd"></span><span class="dd"></span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span></div></td>
+          <td data-val="2">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:40%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">2/5</span>
+            </div>
+          </td>
+          <td data-val="0.92" style="color:#d6a85b;font-weight:600">92%</td>
+          <td data-val="1.0" style="color:#74808c">1.0</td>
+          <td class="trend-c"><span style="color:#8792a0;font-size:22px">▶</span></td>
+          <td data-val="0"><span style="color:#56616d">—</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('其他電子')">
+          <td class="rk-num" data-val="14">14</td>
+          <td data-val="其他電子">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#74808c;border:1px solid #74808c45">其他電子</span>
+              <span style="font-size:10px;color:#74808c">其他</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd"></span><span class="dd"></span><span class="dd act" style="background:#b99a6525;color:#b99a65;border:1px solid #b99a6555">2</span><span class="dd"></span><span class="dd"></span></div></td>
+          <td data-val="1">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:20%;background:#b99a65;border-radius:3px;min-width:3px"></div>
+              <span style="color:#b99a65;font-weight:700">1/5</span>
+            </div>
+          </td>
+          <td data-val="0.895" style="color:#b99a65;font-weight:600">90%</td>
+          <td data-val="2.0" style="color:#74808c">2.0</td>
+          <td class="trend-c"><span style="color:#56616d">—</span></td>
+          <td data-val="0"><span style="color:#56616d">—</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('伺服器/AI')">
+          <td class="rk-num" data-val="15">15</td>
+          <td data-val="伺服器/AI">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#4299b4;border:1px solid #4299b445">伺服器/AI</span>
+              <span style="font-size:10px;color:#56a7d8">AI/伺服器鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd"></span><span class="dd"></span><span class="dd"></span><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd"></span></div></td>
+          <td data-val="1">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:20%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">1/5</span>
+            </div>
+          </td>
+          <td data-val="0.984" style="color:#d6a85b;font-weight:600">98%</td>
+          <td data-val="1.0" style="color:#74808c">1.0</td>
+          <td class="trend-c"><span style="color:#56616d">—</span></td>
+          <td data-val="0"><span style="color:#56616d">—</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('品牌PC/NB')">
+          <td class="rk-num" data-val="16">16</td>
+          <td data-val="品牌PC/NB">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#74808c;border:1px solid #74808c45">品牌PC/NB</span>
+              <span style="font-size:10px;color:#74808c">其他</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd act" style="background:#d6a85b25;color:#d6a85b;border:1px solid #d6a85b55">1</span><span class="dd"></span><span class="dd"></span><span class="dd"></span><span class="dd"></span></div></td>
+          <td data-val="1">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:20%;background:#d6a85b;border-radius:3px;min-width:3px"></div>
+              <span style="color:#d6a85b;font-weight:700">1/5</span>
+            </div>
+          </td>
+          <td data-val="0.968" style="color:#d6a85b;font-weight:600">97%</td>
+          <td data-val="1.0" style="color:#74808c">1.0</td>
+          <td class="trend-c"><span style="color:#56616d">—</span></td>
+          <td data-val="0"><span style="color:#56616d">—</span></td>
+        </tr>
+        <tr class="rank-row" onclick="filterSidebar('記憶體')">
+          <td class="rk-num" data-val="17">17</td>
+          <td data-val="記憶體">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span class="theme-tag" style="background:#171d23;color:#527bd0;border:1px solid #527bd045">記憶體</span>
+              <span style="font-size:10px;color:#9b8fd3">半導體供應鏈</span>
+            </div>
+          </td>
+          <td><div style="display:flex;gap:3px"><span class="dd"></span><span class="dd"></span><span class="dd"></span><span class="dd"></span><span class="dd act" style="background:#b99a6525;color:#b99a65;border:1px solid #b99a6555">1</span></div></td>
+          <td data-val="1">
+            <div style="display:flex;align-items:center;gap:5px">
+              <div style="height:5px;width:20%;background:#b99a65;border-radius:3px;min-width:3px"></div>
+              <span style="color:#b99a65;font-weight:700">1/5</span>
+            </div>
+          </td>
+          <td data-val="0.825" style="color:#b99a65;font-weight:600">82%</td>
+          <td data-val="1.0" style="color:#74808c">1.0</td>
+          <td class="trend-c"><span style="color:#56616d">—</span></td>
+          <td data-val="0"><span style="color:#56616d">—</span></td>
+        </tr></tbody>
+    </table>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title"><span style="color:#6fcf97">選股明細</span><span class="sec-hint"><span style="color:#ff6b6b">★</span> = 連續上榜 ≥2天</span></div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+      <input class="search-bar" id="search" placeholder="搜尋代號 / 名稱 / 族群..." oninput="filterTable()" style="margin-bottom:0">
+      <button onclick="exportCSV()" style="background:#27ae60;color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap">匯出 CSV</button>
+    </div>
+    <table class="stk-tbl" id="stk-tbl">
+      <thead><tr>
+        <th onclick="sortStk(this,0)" style="min-width:160px">選股</th>
+        <th onclick="sortStk(this,1)" style="min-width:90px">族群</th>
+        <th onclick="sortStk(this,2)" style="text-align:center">上榜天數</th>
+        <th onclick="sortStk(this,3)" style="text-align:right">成交價</th>
+        <th onclick="sortStk(this,4)" style="text-align:right">市值</th>
+        <th onclick="sortStk(this,5)" style="text-align:right">成交值</th>
+        <th onclick="sortStk(this,6)" style="min-width:80px">放量位置<br><small style="font-weight:400;color:#8792a0">現價/3年高</small></th>
+        <th onclick="sortStk(this,7)" style="min-width:80px">月內位置<br><small style="font-weight:400;color:#8792a0">月內區間</small></th>
+        <th>加速趨勢(5日)</th>
+        <th onclick="sortStk(this,9)" style="text-align:right">1日%</th>
+        <th onclick="sortStk(this,10)" style="text-align:right">5日%</th>
+        <th onclick="sortStk(this,11)" style="text-align:right">20日%</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td data-val="2377" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2377" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 2377</a>
+              <span class="s-name">微星科技</span>
+            </div>
+          </td>
+          <td data-val="電腦週邊"><span style="background:#6fcf97;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電腦週邊</span></td>
+          <td data-val="5" style="color:#d6a85b;font-weight:700;text-align:center">5天</td>
+          <td data-val="112.0" style="text-align:right;color:#eb5757">112.00</td>
+          <td data-val="94623894400.0" style="text-align:right;color:#74808c">946億</td>
+          <td data-val="4997006692.0" style="text-align:right;color:#56a7d8">50億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:53%;background:#f2c94c;height:7px;border-radius:3px"></div></div><span style="color:#f2c94c;font-size:13px;font-weight:600">53%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:80%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">80%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.4 13.0,11.5 26.0,3.3 39.0,4.2 52.0,16.3" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="16.3" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">2.25×</span></div></td>
+          <td data-val="-0.042735042735042694" style="text-align:right;color:#eb5757;font-weight:600">-4.3%</td>
+          <td data-val="0.1200000000000001" style="text-align:right;color:#6fcf97;font-weight:600">+12.0%</td>
+          <td data-val="0.23348017621145378" style="text-align:right;color:#6fcf97;font-weight:600">+23.3%</td>
+        </tr>
+        <tr>
+          <td data-val="4966" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:4966" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 4966</a>
+              <span class="s-name">譜瑞科技</span>
+            </div>
+          </td>
+          <td data-val="IC設計"><span style="background:#6d8fd8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">IC設計</span></td>
+          <td data-val="4" style="color:#d6a85b;font-weight:700;text-align:center">4天</td>
+          <td data-val="800.0" style="text-align:right;color:#eb5757">800.00</td>
+          <td data-val="64046240000.0" style="text-align:right;color:#74808c">640億</td>
+          <td data-val="2627573587.0" style="text-align:right;color:#56a7d8">26億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:60%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">60%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:93%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">93%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,9.1 13.0,2.9 26.0,8.8 39.0,13.2 52.0,17.9" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.9" r="2.8" fill="#eb5757"/></svg><span style="color:#df8a8a;font-weight:600;font-size:11px">0.85×</span></div></td>
+          <td data-val="-0.023199023199023228" style="text-align:right;color:#eb5757;font-weight:600">-2.3%</td>
+          <td data-val="0.19581464872944698" style="text-align:right;color:#6fcf97;font-weight:600">+19.6%</td>
+          <td data-val="0.4414414414414414" style="text-align:right;color:#6fcf97;font-weight:600">+44.1%</td>
+        </tr>
+        <tr>
+          <td data-val="3036" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3036" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 3036</a>
+              <span class="s-name">文曄科技</span>
+            </div>
+          </td>
+          <td data-val="電子通路"><span style="background:#65717e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電子通路</span></td>
+          <td data-val="4" style="color:#d6a85b;font-weight:700;text-align:center">4天</td>
+          <td data-val="270.0" style="text-align:right;color:#eb5757">270.00</td>
+          <td data-val="378116316000.0" style="text-align:right;color:#74808c">3781億</td>
+          <td data-val="4110611804.0" style="text-align:right;color:#56a7d8">41億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:95%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">95%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:83%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">83%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,11.0 13.0,7.8 26.0,3.0 39.0,9.1 52.0,17.7" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.7" r="2.8" fill="#eb5757"/></svg><span style="color:#df8a8a;font-weight:600;font-size:11px">0.86×</span></div></td>
+          <td data-val="-0.0055248618784530246" style="text-align:right;color:#eb5757;font-weight:600">-0.6%</td>
+          <td data-val="0.12266112266112272" style="text-align:right;color:#6fcf97;font-weight:600">+12.3%</td>
+          <td data-val="0.14893617021276606" style="text-align:right;color:#6fcf97;font-weight:600">+14.9%</td>
+        </tr>
+        <tr>
+          <td data-val="2481" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2481" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 2481</a>
+              <span class="s-name">強茂</span>
+            </div>
+          </td>
+          <td data-val="功率半導體"><span style="background:#6387d3;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">功率半導體</span></td>
+          <td data-val="4" style="color:#d6a85b;font-weight:700;text-align:center">4天</td>
+          <td data-val="117.5" style="text-align:right;color:#6fcf97">117.50</td>
+          <td data-val="44898500750.0" style="text-align:right;color:#74808c">449億</td>
+          <td data-val="5610549970.0" style="text-align:right;color:#56a7d8">56億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:97%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">97%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:83%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">83%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.5 13.0,12.5 26.0,5.5 39.0,3.2 52.0,14.6" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="14.6" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.89×</span></div></td>
+          <td data-val="0.017316017316017396" style="text-align:right;color:#6fcf97;font-weight:600">+1.7%</td>
+          <td data-val="0.18090452261306522" style="text-align:right;color:#6fcf97;font-weight:600">+18.1%</td>
+          <td data-val="0.09302325581395343" style="text-align:right;color:#6fcf97;font-weight:600">+9.3%</td>
+        </tr>
+        <tr>
+          <td data-val="8069" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:8069" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 8069</a>
+              <span class="s-name">元太科技工業</span>
+            </div>
+          </td>
+          <td data-val="面板"><span style="background:#c99a4e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">面板</span></td>
+          <td data-val="3" style="color:#b99a65;font-weight:700;text-align:center">3天</td>
+          <td data-val="210.0" style="text-align:right;color:#eb5757">210.00</td>
+          <td data-val="244705272000.0" style="text-align:right;color:#74808c">2447億</td>
+          <td data-val="2005466604.0" style="text-align:right;color:#56a7d8">20億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:65%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">65%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:81%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">81%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,16.9 13.0,10.1 26.0,12.1 39.0,3.0 52.0,17.7" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.7" r="2.8" fill="#eb5757"/></svg><span style="color:#8fd9ad;font-weight:600;font-size:11px">1.29×</span></div></td>
+          <td data-val="-0.07079646017699115" style="text-align:right;color:#eb5757;font-weight:600">-7.1%</td>
+          <td data-val="0.2962962962962963" style="text-align:right;color:#6fcf97;font-weight:600">+29.6%</td>
+          <td data-val="0.35483870967741926" style="text-align:right;color:#6fcf97;font-weight:600">+35.5%</td>
+        </tr>
+        <tr>
+          <td data-val="3008" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3008" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 3008</a>
+              <span class="s-name">大立光電</span>
+            </div>
+          </td>
+          <td data-val="光電"><span style="background:#d4a04e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">光電</span></td>
+          <td data-val="3" style="color:#b99a65;font-weight:700;text-align:center">3天</td>
+          <td data-val="3445.0" style="text-align:right;color:#6fcf97">3445.00</td>
+          <td data-val="459797949000.0" style="text-align:right;color:#74808c">4598億</td>
+          <td data-val="10514695250.0" style="text-align:right;color:#56a7d8">105億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.7 13.0,14.0 26.0,11.1 39.0,3.0 52.0,10.1" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="10.1" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">2.46×</span></div></td>
+          <td data-val="0.09888357256778302" style="text-align:right;color:#6fcf97;font-weight:600">+9.9%</td>
+          <td data-val="0.3404669260700388" style="text-align:right;color:#6fcf97;font-weight:600">+34.0%</td>
+          <td data-val="0.22163120567375882" style="text-align:right;color:#6fcf97;font-weight:600">+22.2%</td>
+        </tr>
+        <tr>
+          <td data-val="5269" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:5269" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 5269</a>
+              <span class="s-name">祥碩科技</span>
+            </div>
+          </td>
+          <td data-val="IC設計"><span style="background:#6d8fd8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">IC設計</span></td>
+          <td data-val="3" style="color:#b99a65;font-weight:700;text-align:center">3天</td>
+          <td data-val="1455.0" style="text-align:right;color:#eb5757">1455.00</td>
+          <td data-val="108800680500.0" style="text-align:right;color:#74808c">1088億</td>
+          <td data-val="4672828380.0" style="text-align:right;color:#56a7d8">47億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:57%;background:#f2c94c;height:7px;border-radius:3px"></div></div><span style="color:#f2c94c;font-size:13px;font-weight:600">57%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:74%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">74%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,13.2 13.0,3.2 26.0,5.1 39.0,10.0 52.0,17.5" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.5" r="2.8" fill="#eb5757"/></svg><span style="color:#8792a0;font-weight:600;font-size:11px">1.06×</span></div></td>
+          <td data-val="-0.0068259385665528916" style="text-align:right;color:#eb5757;font-weight:600">-0.7%</td>
+          <td data-val="0.03191489361702127" style="text-align:right;color:#6fcf97;font-weight:600">+3.2%</td>
+          <td data-val="0.12790697674418605" style="text-align:right;color:#6fcf97;font-weight:600">+12.8%</td>
+        </tr>
+        <tr>
+          <td data-val="6415" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:6415" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 6415</a>
+              <span class="s-name">矽力杰</span>
+            </div>
+          </td>
+          <td data-val="IC設計"><span style="background:#6d8fd8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">IC設計</span></td>
+          <td data-val="3" style="color:#b99a65;font-weight:700;text-align:center">3天</td>
+          <td data-val="468.0" style="text-align:right;color:#eb5757">468.00</td>
+          <td data-val="181955805652.17392" style="text-align:right;color:#74808c">1820億</td>
+          <td data-val="5739514102.0" style="text-align:right;color:#56a7d8">57億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:84%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">84%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:82%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">82%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,15.7 13.0,7.9 26.0,3.1 39.0,13.3 52.0,17.7" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.7" r="2.8" fill="#eb5757"/></svg><span style="color:#8fd9ad;font-weight:600;font-size:11px">1.23×</span></div></td>
+          <td data-val="-0.06958250497017893" style="text-align:right;color:#eb5757;font-weight:600">-7.0%</td>
+          <td data-val="0.099882491186839" style="text-align:right;color:#6fcf97;font-weight:600">+10.0%</td>
+          <td data-val="0.5471074380165288" style="text-align:right;color:#6fcf97;font-weight:600">+54.7%</td>
+        </tr>
+        <tr>
+          <td data-val="3374" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:3374" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 3374</a>
+              <span class="s-name">精材科技</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="3" style="color:#b99a65;font-weight:700;text-align:center">3天</td>
+          <td data-val="278.0" style="text-align:right;color:#6fcf97">278.00</td>
+          <td data-val="75439275400.0" style="text-align:right;color:#74808c">754億</td>
+          <td data-val="13444690255.0" style="text-align:right;color:#56a7d8">134億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:99%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">99%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,7.6 13.0,3.2 26.0,14.4 39.0,16.2 52.0,17.5" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.5" r="2.8" fill="#eb5757"/></svg><span style="color:#8fd9ad;font-weight:600;font-size:11px">1.33×</span></div></td>
+          <td data-val="0.07129094412331405" style="text-align:right;color:#6fcf97;font-weight:600">+7.1%</td>
+          <td data-val="0.22737306843267113" style="text-align:right;color:#6fcf97;font-weight:600">+22.7%</td>
+          <td data-val="0.5067750677506775" style="text-align:right;color:#6fcf97;font-weight:600">+50.7%</td>
+        </tr>
+        <tr>
+          <td data-val="3583" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3583" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 3583</a>
+              <span class="s-name">辛耘企業</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="3" style="color:#b99a65;font-weight:700;text-align:center">3天</td>
+          <td data-val="888.0" style="text-align:right;color:#eb5757">888.00</td>
+          <td data-val="71347336800.0" style="text-align:right;color:#74808c">713億</td>
+          <td data-val="3238169071.0" style="text-align:right;color:#56a7d8">32億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:91%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">91%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:70%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">70%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.6 13.0,12.5 26.0,4.3 39.0,3.1 52.0,12.2" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="12.2" r="2.8" fill="#eb5757"/></svg><span style="color:#8fd9ad;font-weight:600;font-size:11px">1.49×</span></div></td>
+          <td data-val="-0.04413347685683533" style="text-align:right;color:#eb5757;font-weight:600">-4.4%</td>
+          <td data-val="0.12690355329949243" style="text-align:right;color:#6fcf97;font-weight:600">+12.7%</td>
+          <td data-val="0.26136363636363646" style="text-align:right;color:#6fcf97;font-weight:600">+26.1%</td>
+        </tr>
+        <tr>
+          <td data-val="6531" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:6531" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 6531</a>
+              <span class="s-name">愛普科技</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="3" style="color:#b99a65;font-weight:700;text-align:center">3天</td>
+          <td data-val="1080.0" style="text-align:right;color:#6fcf97">1080.00</td>
+          <td data-val="175874328000.0" style="text-align:right;color:#74808c">1759億</td>
+          <td data-val="10424596555.0" style="text-align:right;color:#56a7d8">104億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.8 13.0,12.3 26.0,8.0 39.0,3.0 52.0,12.5" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="12.5" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">2.24×</span></div></td>
+          <td data-val="0.02857142857142847" style="text-align:right;color:#6fcf97;font-weight:600">+2.9%</td>
+          <td data-val="0.2342857142857142" style="text-align:right;color:#6fcf97;font-weight:600">+23.4%</td>
+          <td data-val="0.8430034129692834" style="text-align:right;color:#6fcf97;font-weight:600">+84.3%</td>
+        </tr>
+        <tr>
+          <td data-val="7734" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:7734" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 7734</a>
+              <span class="s-name">印能科技</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="3" style="color:#b99a65;font-weight:700;text-align:center">3天</td>
+          <td data-val="3750.0" style="text-align:right;color:#eb5757">3750.00</td>
+          <td data-val="105000000000.0" style="text-align:right;color:#74808c">1050億</td>
+          <td data-val="3012143235.0" style="text-align:right;color:#56a7d8">30億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:85%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">85%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:70%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">70%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,18.0 13.0,17.2 26.0,12.4 39.0,2.8 52.0,6.3" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="6.3" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">10.41×</span></div></td>
+          <td data-val="-0.048223350253807085" style="text-align:right;color:#eb5757;font-weight:600">-4.8%</td>
+          <td data-val="0.03305785123966931" style="text-align:right;color:#6fcf97;font-weight:600">+3.3%</td>
+          <td data-val="0.644736842105263" style="text-align:right;color:#6fcf97;font-weight:600">+64.5%</td>
+        </tr>
+        <tr>
+          <td data-val="2409" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2409" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 2409</a>
+              <span class="s-name">友達光電</span>
+            </div>
+          </td>
+          <td data-val="面板"><span style="background:#c99a4e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">面板</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="19.05" style="text-align:right;color:#eb5757">19.05</td>
+          <td data-val="143772235950.0" style="text-align:right;color:#74808c">1438億</td>
+          <td data-val="6184124140.0" style="text-align:right;color:#56a7d8">62億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:89%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">89%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:56%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">56%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,15.4 13.0,10.0 26.0,3.2 39.0,5.4 52.0,17.5" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.5" r="2.8" fill="#eb5757"/></svg><span style="color:#8792a0;font-weight:600;font-size:11px">0.94×</span></div></td>
+          <td data-val="-0.025575447570332477" style="text-align:right;color:#eb5757;font-weight:600">-2.6%</td>
+          <td data-val="0.0672268907563025" style="text-align:right;color:#6fcf97;font-weight:600">+6.7%</td>
+          <td data-val="-0.07971014492753614" style="text-align:right;color:#eb5757;font-weight:600">-8.0%</td>
+        </tr>
+        <tr>
+          <td data-val="3481" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3481" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 3481</a>
+              <span class="s-name">群創光電</span>
+            </div>
+          </td>
+          <td data-val="面板"><span style="background:#c99a4e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">面板</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="36.1" style="text-align:right;color:#6fcf97">36.10</td>
+          <td data-val="288410026140.0" style="text-align:right;color:#74808c">2884億</td>
+          <td data-val="32750209305.0" style="text-align:right;color:#56a7d8">328億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:96%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">96%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:90%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">90%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,9.0 13.0,17.1 26.0,13.5 39.0,3.6 52.0,4.4" fill="none" stroke="#74808c" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="4.4" r="2.8" fill="#74808c"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.80×</span></div></td>
+          <td data-val="0.019774011299435124" style="text-align:right;color:#6fcf97;font-weight:600">+2.0%</td>
+          <td data-val="0.22789115646258518" style="text-align:right;color:#6fcf97;font-weight:600">+22.8%</td>
+          <td data-val="0.3247706422018348" style="text-align:right;color:#6fcf97;font-weight:600">+32.5%</td>
+        </tr>
+        <tr>
+          <td data-val="2472" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2472" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 2472</a>
+              <span class="s-name">立隆電子工業</span>
+            </div>
+          </td>
+          <td data-val="被動元件"><span style="background:#8f8980;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">被動元件</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="217.0" style="text-align:right;color:#eb5757">217.00</td>
+          <td data-val="35747516700.0" style="text-align:right;color:#74808c">357億</td>
+          <td data-val="2959029462.0" style="text-align:right;color:#56a7d8">30億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:92%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">92%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:74%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">74%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.1 13.0,6.1 26.0,11.4 39.0,15.5 52.0,17.7" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.7" r="2.8" fill="#eb5757"/></svg><span style="color:#8792a0;font-weight:600;font-size:11px">1.03×</span></div></td>
+          <td data-val="-0.06263498920086397" style="text-align:right;color:#eb5757;font-weight:600">-6.3%</td>
+          <td data-val="-0.020316027088036148" style="text-align:right;color:#eb5757;font-weight:600">-2.0%</td>
+          <td data-val="0.2122905027932962" style="text-align:right;color:#6fcf97;font-weight:600">+21.2%</td>
+        </tr>
+        <tr>
+          <td data-val="2379" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2379" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 2379</a>
+              <span class="s-name">瑞昱半導體</span>
+            </div>
+          </td>
+          <td data-val="IC設計"><span style="background:#6d8fd8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">IC設計</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="536.0" style="text-align:right;color:#eb5757">536.00</td>
+          <td data-val="276314753600.0" style="text-align:right;color:#74808c">2763億</td>
+          <td data-val="3557707643.0" style="text-align:right;color:#56a7d8">36億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:88%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">88%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:12%;background:#74808c;height:7px;border-radius:3px"></div></div><span style="color:#74808c;font-size:13px;font-weight:600">12%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,6.7 13.0,2.9 26.0,12.9 39.0,17.4 52.0,17.8" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.8" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.51×</span></div></td>
+          <td data-val="-0.0662020905923345" style="text-align:right;color:#eb5757;font-weight:600">-6.6%</td>
+          <td data-val="-0.09459459459459463" style="text-align:right;color:#eb5757;font-weight:600">-9.5%</td>
+          <td data-val="-0.007407407407407418" style="text-align:right;color:#eb5757;font-weight:600">-0.7%</td>
+        </tr>
+        <tr>
+          <td data-val="3034" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3034" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 3034</a>
+              <span class="s-name">聯詠科技</span>
+            </div>
+          </td>
+          <td data-val="IC設計"><span style="background:#6d8fd8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">IC設計</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="466.5" style="text-align:right;color:#eb5757">466.50</td>
+          <td data-val="283870614750.0" style="text-align:right;color:#74808c">2839億</td>
+          <td data-val="4079046365.0" style="text-align:right;color:#56a7d8">41億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:72%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">72%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:65%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">65%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,2.9 13.0,4.8 26.0,15.5 39.0,17.4 52.0,17.9" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.9" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.48×</span></div></td>
+          <td data-val="-0.053752535496957354" style="text-align:right;color:#eb5757;font-weight:600">-5.4%</td>
+          <td data-val="-0.06325301204819278" style="text-align:right;color:#eb5757;font-weight:600">-6.3%</td>
+          <td data-val="0.13228155339805836" style="text-align:right;color:#6fcf97;font-weight:600">+13.2%</td>
+        </tr>
+        <tr>
+          <td data-val="4919" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:4919" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 4919</a>
+              <span class="s-name">新唐科技</span>
+            </div>
+          </td>
+          <td data-val="IC設計"><span style="background:#6d8fd8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">IC設計</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="154.5" style="text-align:right;color:#eb5757">154.50</td>
+          <td data-val="64853738850.0" style="text-align:right;color:#74808c">649億</td>
+          <td data-val="3653682083.0" style="text-align:right;color:#56a7d8">37億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:83%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">83%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:55%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">55%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,2.8 13.0,12.5 26.0,15.2 39.0,17.1 52.0,17.9" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.9" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.51×</span></div></td>
+          <td data-val="-0.034375000000000044" style="text-align:right;color:#eb5757;font-weight:600">-3.4%</td>
+          <td data-val="-0.07761194029850749" style="text-align:right;color:#eb5757;font-weight:600">-7.8%</td>
+          <td data-val="0.3148936170212766" style="text-align:right;color:#6fcf97;font-weight:600">+31.5%</td>
+        </tr>
+        <tr>
+          <td data-val="3035" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3035" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 3035</a>
+              <span class="s-name">智原科技</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="190.0" style="text-align:right;color:#eb5757">190.00</td>
+          <td data-val="49504557000.0" style="text-align:right;color:#74808c">495億</td>
+          <td data-val="3371102682.0" style="text-align:right;color:#56a7d8">34億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:41%;background:#f2c94c;height:7px;border-radius:3px"></div></div><span style="color:#f2c94c;font-size:13px;font-weight:600">41%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:64%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">64%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,11.4 13.0,7.0 26.0,3.1 39.0,8.0 52.0,17.6" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.6" r="2.8" fill="#eb5757"/></svg><span style="color:#df8a8a;font-weight:600;font-size:11px">0.76×</span></div></td>
+          <td data-val="-0.04282115869017633" style="text-align:right;color:#eb5757;font-weight:600">-4.3%</td>
+          <td data-val="0.0674157303370786" style="text-align:right;color:#6fcf97;font-weight:600">+6.7%</td>
+          <td data-val="0.21405750798722045" style="text-align:right;color:#6fcf97;font-weight:600">+21.4%</td>
+        </tr>
+        <tr>
+          <td data-val="4749" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:4749" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 4749</a>
+              <span class="s-name">新應材</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="1015.0" style="text-align:right;color:#eb5757">1015.00</td>
+          <td data-val="94123792000.0" style="text-align:right;color:#74808c">941億</td>
+          <td data-val="4875012320.0" style="text-align:right;color:#56a7d8">49億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:86%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">86%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:43%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">43%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.5 13.0,3.0 26.0,8.6 39.0,15.9 52.0,17.7" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.7" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.48×</span></div></td>
+          <td data-val="-0.09375" style="text-align:right;color:#eb5757;font-weight:600">-9.4%</td>
+          <td data-val="-0.06451612903225812" style="text-align:right;color:#eb5757;font-weight:600">-6.5%</td>
+          <td data-val="0.13916947250280587" style="text-align:right;color:#6fcf97;font-weight:600">+13.9%</td>
+        </tr>
+        <tr>
+          <td data-val="5351" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:5351" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 5351</a>
+              <span class="s-name">鈺創科技</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="87.5" style="text-align:right;color:#eb5757">87.50</td>
+          <td data-val="29520015000.0" style="text-align:right;color:#74808c">295億</td>
+          <td data-val="3503334500.0" style="text-align:right;color:#56a7d8">35億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:95%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">95%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:86%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">86%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,16.7 13.0,17.2 26.0,14.3 39.0,3.5 52.0,10.5" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="10.5" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.53×</span></div></td>
+          <td data-val="-0.04371584699453557" style="text-align:right;color:#eb5757;font-weight:600">-4.4%</td>
+          <td data-val="0.16511318242343553" style="text-align:right;color:#6fcf97;font-weight:600">+16.5%</td>
+          <td data-val="0.3157894736842106" style="text-align:right;color:#6fcf97;font-weight:600">+31.6%</td>
+        </tr>
+        <tr>
+          <td data-val="4977" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:4977" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 4977</a>
+              <span class="s-name">眾達科技</span>
+            </div>
+          </td>
+          <td data-val="網通"><span style="background:#5db98d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">網通</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="226.5" style="text-align:right;color:#eb5757">226.50</td>
+          <td data-val="18162989700.0" style="text-align:right;color:#74808c">182億</td>
+          <td data-val="1817196802.0" style="text-align:right;color:#56a7d8">18億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:83%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">83%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:32%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">32%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.8 13.0,13.6 26.0,3.0 39.0,9.7 52.0,17.7" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.7" r="2.8" fill="#eb5757"/></svg><span style="color:#df8a8a;font-weight:600;font-size:11px">0.88×</span></div></td>
+          <td data-val="-0.03821656050955413" style="text-align:right;color:#eb5757;font-weight:600">-3.8%</td>
+          <td data-val="-999" style="text-align:right;color:#74808c;font-weight:600">—</td>
+          <td data-val="0.05594405594405605" style="text-align:right;color:#6fcf97;font-weight:600">+5.6%</td>
+        </tr>
+        <tr>
+          <td data-val="2049" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2049" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 2049</a>
+              <span class="s-name">上銀科技</span>
+            </div>
+          </td>
+          <td data-val="電機"><span style="background:#9b8fd3;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電機</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="392.5" style="text-align:right;color:#6fcf97">392.50</td>
+          <td data-val="138863477750.0" style="text-align:right;color:#74808c">1389億</td>
+          <td data-val="4635576434.0" style="text-align:right;color:#56a7d8">46億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.3 13.0,5.3 26.0,3.4 39.0,10.8 52.0,16.9" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="16.9" r="2.8" fill="#eb5757"/></svg><span style="color:#8792a0;font-weight:600;font-size:11px">1.07×</span></div></td>
+          <td data-val="0.04806408544726293" style="text-align:right;color:#6fcf97;font-weight:600">+4.8%</td>
+          <td data-val="0.22848200312989042" style="text-align:right;color:#6fcf97;font-weight:600">+22.8%</td>
+          <td data-val="0.4068100358422939" style="text-align:right;color:#6fcf97;font-weight:600">+40.7%</td>
+        </tr>
+        <tr>
+          <td data-val="6217" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:6217" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 6217</a>
+              <span class="s-name">中國探針</span>
+            </div>
+          </td>
+          <td data-val="電子零組件"><span style="background:#8fbd60;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電子零組件</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="300.0" style="text-align:right;color:#eb5757">300.00</td>
+          <td data-val="35163000000.0" style="text-align:right;color:#74808c">352億</td>
+          <td data-val="3611669887.0" style="text-align:right;color:#56a7d8">36億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:87%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">87%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:64%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">64%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,18.0 13.0,16.7 26.0,14.7 39.0,2.8 52.0,9.5" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="9.5" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">6.20×</span></div></td>
+          <td data-val="-0.07550077041602465" style="text-align:right;color:#eb5757;font-weight:600">-7.6%</td>
+          <td data-val="0.1278195488721805" style="text-align:right;color:#6fcf97;font-weight:600">+12.8%</td>
+          <td data-val="0.32450331125827825" style="text-align:right;color:#6fcf97;font-weight:600">+32.5%</td>
+        </tr>
+        <tr>
+          <td data-val="6781" data-core="1">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:6781" target="_blank" class="sid-link"><span style="color:#ff6b6b">★</span> 6781</a>
+              <span class="s-name">AES Holding Co. Ltd.</span>
+            </div>
+          </td>
+          <td data-val="電子零組件"><span style="background:#8fbd60;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電子零組件</span></td>
+          <td data-val="2" style="color:#9a8f72;font-weight:700;text-align:center">2天</td>
+          <td data-val="1160.0" style="text-align:right;color:#eb5757">1160.00</td>
+          <td data-val="99085808000.0" style="text-align:right;color:#74808c">991億</td>
+          <td data-val="2018007140.0" style="text-align:right;color:#56a7d8">20億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:77%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">77%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:48%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">48%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,2.9 13.0,7.7 26.0,13.2 39.0,16.7 52.0,17.9" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.9" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.47×</span></div></td>
+          <td data-val="-0.021097046413502074" style="text-align:right;color:#eb5757;font-weight:600">-2.1%</td>
+          <td data-val="-0.05691056910569103" style="text-align:right;color:#eb5757;font-weight:600">-5.7%</td>
+          <td data-val="0.1428571428571428" style="text-align:right;color:#6fcf97;font-weight:600">+14.3%</td>
+        </tr>
+        <tr>
+          <td data-val="2356" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2356" target="_blank" class="sid-link">2356</a>
+              <span class="s-name">英業達</span>
+            </div>
+          </td>
+          <td data-val="伺服器/AI"><span style="background:#4299b4;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">伺服器/AI</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="52.2" style="text-align:right;color:#eb5757">52.20</td>
+          <td data-val="187266200220.0" style="text-align:right;color:#74808c">1873億</td>
+          <td data-val="2748154495.0" style="text-align:right;color:#56a7d8">27億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:72%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">72%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:87%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">87%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,13.2 13.0,17.6 26.0,12.6 39.0,7.6 52.0,3.1" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="3.1" r="2.8" fill="#6fcf97"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">2.99×</span></div></td>
+          <td data-val="-0.018796992481203034" style="text-align:right;color:#eb5757;font-weight:600">-1.9%</td>
+          <td data-val="0.05348133198789107" style="text-align:right;color:#6fcf97;font-weight:600">+5.3%</td>
+          <td data-val="0.16000000000000014" style="text-align:right;color:#6fcf97;font-weight:600">+16.0%</td>
+        </tr>
+        <tr>
+          <td data-val="2492" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2492" target="_blank" class="sid-link">2492</a>
+              <span class="s-name">華新科技</span>
+            </div>
+          </td>
+          <td data-val="被動元件"><span style="background:#8f8980;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">被動元件</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="206.0" style="text-align:right;color:#eb5757">206.00</td>
+          <td data-val="100075788800.0" style="text-align:right;color:#74808c">1001億</td>
+          <td data-val="2731252996.0" style="text-align:right;color:#56a7d8">27億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:93%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">93%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:84%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">84%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.2 13.0,12.8 26.0,13.3 39.0,14.3 52.0,17.5" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.5" r="2.8" fill="#eb5757"/></svg><span style="color:#8792a0;font-weight:600;font-size:11px">1.08×</span></div></td>
+          <td data-val="-0.0636363636363636" style="text-align:right;color:#eb5757;font-weight:600">-6.4%</td>
+          <td data-val="0.3205128205128205" style="text-align:right;color:#6fcf97;font-weight:600">+32.1%</td>
+          <td data-val="0.3872053872053871" style="text-align:right;color:#6fcf97;font-weight:600">+38.7%</td>
+        </tr>
+        <tr>
+          <td data-val="3026" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3026" target="_blank" class="sid-link">3026</a>
+              <span class="s-name">禾伸堂企業</span>
+            </div>
+          </td>
+          <td data-val="被動元件"><span style="background:#8f8980;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">被動元件</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="327.0" style="text-align:right;color:#eb5757">327.00</td>
+          <td data-val="54246128100.0" style="text-align:right;color:#74808c">542億</td>
+          <td data-val="925220672.0" style="text-align:right;color:#56a7d8">9億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:91%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">91%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:78%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">78%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,2.8 13.0,3.3 26.0,11.8 39.0,17.9 52.0,17.7" fill="none" stroke="#74808c" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.7" r="2.8" fill="#74808c"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.16×</span></div></td>
+          <td data-val="-0.08531468531468533" style="text-align:right;color:#eb5757;font-weight:600">-8.5%</td>
+          <td data-val="-0.009090909090909038" style="text-align:right;color:#eb5757;font-weight:600">-0.9%</td>
+          <td data-val="0.35966735966735963" style="text-align:right;color:#6fcf97;font-weight:600">+36.0%</td>
+        </tr>
+        <tr>
+          <td data-val="3357" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:3357" target="_blank" class="sid-link">3357</a>
+              <span class="s-name">西北臺慶科技</span>
+            </div>
+          </td>
+          <td data-val="被動元件"><span style="background:#8f8980;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">被動元件</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="220.0" style="text-align:right;color:#eb5757">220.00</td>
+          <td data-val="25286140000.0" style="text-align:right;color:#74808c">253億</td>
+          <td data-val="3074920587.0" style="text-align:right;color:#56a7d8">31億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:95%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">95%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:82%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">82%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.3 13.0,8.2 26.0,17.4 39.0,15.0 52.0,13.9" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="13.9" r="2.8" fill="#6fcf97"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.78×</span></div></td>
+          <td data-val="-0.049676025917926525" style="text-align:right;color:#eb5757;font-weight:600">-5.0%</td>
+          <td data-val="0.17333333333333334" style="text-align:right;color:#6fcf97;font-weight:600">+17.3%</td>
+          <td data-val="0.2571428571428571" style="text-align:right;color:#6fcf97;font-weight:600">+25.7%</td>
+        </tr>
+        <tr>
+          <td data-val="3406" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3406" target="_blank" class="sid-link">3406</a>
+              <span class="s-name">玉晶光電</span>
+            </div>
+          </td>
+          <td data-val="光電"><span style="background:#d4a04e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">光電</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="588.0" style="text-align:right;color:#6fcf97">588.00</td>
+          <td data-val="66292942800.0" style="text-align:right;color:#74808c">663億</td>
+          <td data-val="4628692873.0" style="text-align:right;color:#56a7d8">46億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:87%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">87%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.9 13.0,15.5 26.0,15.8 39.0,8.1 52.0,2.9" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="2.9" r="2.8" fill="#6fcf97"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">3.88×</span></div></td>
+          <td data-val="0.050000000000000044" style="text-align:right;color:#6fcf97;font-weight:600">+5.0%</td>
+          <td data-val="0.1620553359683794" style="text-align:right;color:#6fcf97;font-weight:600">+16.2%</td>
+          <td data-val="0.15068493150684925" style="text-align:right;color:#6fcf97;font-weight:600">+15.1%</td>
+        </tr>
+        <tr>
+          <td data-val="3673" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3673" target="_blank" class="sid-link">3673</a>
+              <span class="s-name">TPK Holding Co. Ltd.</span>
+            </div>
+          </td>
+          <td data-val="光電"><span style="background:#d4a04e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">光電</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="64.7" style="text-align:right;color:#6fcf97">64.70</td>
+          <td data-val="26311147860.000004" style="text-align:right;color:#74808c">263億</td>
+          <td data-val="1329558388.0" style="text-align:right;color:#56a7d8">13億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:89%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">89%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:43%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">43%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.9 13.0,17.0 26.0,13.7 39.0,2.9 52.0,6.9" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="6.9" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">3.36×</span></div></td>
+          <td data-val="0.0062208398133749565" style="text-align:right;color:#6fcf97;font-weight:600">+0.6%</td>
+          <td data-val="0.09661016949152557" style="text-align:right;color:#6fcf97;font-weight:600">+9.7%</td>
+          <td data-val="-0.05409356725146197" style="text-align:right;color:#eb5757;font-weight:600">-5.4%</td>
+        </tr>
+        <tr>
+          <td data-val="6116" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:6116" target="_blank" class="sid-link">6116</a>
+              <span class="s-name">瀚宇彩晶</span>
+            </div>
+          </td>
+          <td data-val="光電"><span style="background:#d4a04e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">光電</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="10.25" style="text-align:right;color:#eb5757">10.25</td>
+          <td data-val="29301212725.0" style="text-align:right;color:#74808c">293億</td>
+          <td data-val="1110889258.0" style="text-align:right;color:#56a7d8">11億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:72%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">72%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:67%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">67%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.7 13.0,15.6 26.0,3.6 39.0,10.0 52.0,17.1" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.1" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">2.86×</span></div></td>
+          <td data-val="-0.014423076923076983" style="text-align:right;color:#eb5757;font-weight:600">-1.4%</td>
+          <td data-val="0.11413043478260887" style="text-align:right;color:#6fcf97;font-weight:600">+11.4%</td>
+          <td data-val="0.10571736785329033" style="text-align:right;color:#6fcf97;font-weight:600">+10.6%</td>
+        </tr>
+        <tr>
+          <td data-val="6278" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:6278" target="_blank" class="sid-link">6278</a>
+              <span class="s-name">台灣表面黏著科技</span>
+            </div>
+          </td>
+          <td data-val="光電"><span style="background:#d4a04e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">光電</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="220.5" style="text-align:right;color:#eb5757">220.50</td>
+          <td data-val="64473847200.0" style="text-align:right;color:#74808c">645億</td>
+          <td data-val="10108992254.0" style="text-align:right;color:#56a7d8">101億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:97%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">97%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:93%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">93%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.0 13.0,11.0 26.0,14.0 39.0,17.8 52.0,15.2" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="15.2" r="2.8" fill="#6fcf97"/></svg><span style="color:#8792a0;font-weight:600;font-size:11px">1.02×</span></div></td>
+          <td data-val="-0.02433628318584069" style="text-align:right;color:#eb5757;font-weight:600">-2.4%</td>
+          <td data-val="0.09701492537313428" style="text-align:right;color:#6fcf97;font-weight:600">+9.7%</td>
+          <td data-val="0.5419580419580419" style="text-align:right;color:#6fcf97;font-weight:600">+54.2%</td>
+        </tr>
+        <tr>
+          <td data-val="6443" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:6443" target="_blank" class="sid-link">6443</a>
+              <span class="s-name">元晶太陽能科技</span>
+            </div>
+          </td>
+          <td data-val="光電"><span style="background:#d4a04e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">光電</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="38.2" style="text-align:right;color:#eb5757">38.20</td>
+          <td data-val="19588833940.0" style="text-align:right;color:#74808c">196億</td>
+          <td data-val="653778991.0" style="text-align:right;color:#56a7d8">7億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:73%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">73%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:41%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">41%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.2 13.0,17.9 26.0,5.5 39.0,5.0 52.0,2.8" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="2.8" r="2.8" fill="#6fcf97"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">14.03×</span></div></td>
+          <td data-val="-0.04020100502512547" style="text-align:right;color:#eb5757;font-weight:600">-4.0%</td>
+          <td data-val="-0.04380475594493116" style="text-align:right;color:#eb5757;font-weight:600">-4.4%</td>
+          <td data-val="-0.05562422744128548" style="text-align:right;color:#eb5757;font-weight:600">-5.6%</td>
+        </tr>
+        <tr>
+          <td data-val="2357" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2357" target="_blank" class="sid-link">2357</a>
+              <span class="s-name">華碩電腦</span>
+            </div>
+          </td>
+          <td data-val="品牌PC/NB"><span style="background:#74808c;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">品牌PC/NB</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="641.0" style="text-align:right;color:#eb5757">641.00</td>
+          <td data-val="476109352300.0" style="text-align:right;color:#74808c">4761億</td>
+          <td data-val="4380158723.0" style="text-align:right;color:#56a7d8">44億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:86%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">86%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:57%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">57%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.1 13.0,11.1 26.0,15.1 39.0,17.6 52.0,16.9" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="16.9" r="2.8" fill="#6fcf97"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.75×</span></div></td>
+          <td data-val="-0.055964653902798256" style="text-align:right;color:#eb5757;font-weight:600">-5.6%</td>
+          <td data-val="-0.013846153846153841" style="text-align:right;color:#eb5757;font-weight:600">-1.4%</td>
+          <td data-val="0.0882852292020373" style="text-align:right;color:#6fcf97;font-weight:600">+8.8%</td>
+        </tr>
+        <tr>
+          <td data-val="3044" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3044" target="_blank" class="sid-link">3044</a>
+              <span class="s-name">健鼎科技</span>
+            </div>
+          </td>
+          <td data-val="PCB/載板"><span style="background:#4869a8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">PCB/載板</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="477.5" style="text-align:right;color:#eb5757">477.50</td>
+          <td data-val="250976817250.0" style="text-align:right;color:#74808c">2510億</td>
+          <td data-val="3395602420.0" style="text-align:right;color:#56a7d8">34億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:90%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">90%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:56%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">56%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.4 13.0,16.9 26.0,11.2 39.0,3.3 52.0,5.8" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="5.8" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.83×</span></div></td>
+          <td data-val="-0.0673828125" style="text-align:right;color:#eb5757;font-weight:600">-6.7%</td>
+          <td data-val="-0.007276507276507305" style="text-align:right;color:#eb5757;font-weight:600">-0.7%</td>
+          <td data-val="0.1632155907429964" style="text-align:right;color:#6fcf97;font-weight:600">+16.3%</td>
+        </tr>
+        <tr>
+          <td data-val="4958" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:4958" target="_blank" class="sid-link">4958</a>
+              <span class="s-name">臻鼎科技控股</span>
+            </div>
+          </td>
+          <td data-val="PCB/載板"><span style="background:#4869a8;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">PCB/載板</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="401.0" style="text-align:right;color:#eb5757">401.00</td>
+          <td data-val="429309878200.0" style="text-align:right;color:#74808c">4293億</td>
+          <td data-val="21677150689.0" style="text-align:right;color:#56a7d8">217億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:90%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">90%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:77%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">77%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.4 13.0,15.5 26.0,12.1 39.0,6.1 52.0,3.3" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="3.3" r="2.8" fill="#6fcf97"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.64×</span></div></td>
+          <td data-val="-0.08132875143184426" style="text-align:right;color:#eb5757;font-weight:600">-8.1%</td>
+          <td data-val="0.0" style="text-align:right;color:#6fcf97;font-weight:600">+0.0%</td>
+          <td data-val="0.5633528265107213" style="text-align:right;color:#6fcf97;font-weight:600">+56.3%</td>
+        </tr>
+        <tr>
+          <td data-val="3702" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3702" target="_blank" class="sid-link">3702</a>
+              <span class="s-name">大聯大控股</span>
+            </div>
+          </td>
+          <td data-val="電子通路"><span style="background:#65717e;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電子通路</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="110.0" style="text-align:right;color:#eb5757">110.00</td>
+          <td data-val="184703629000.0" style="text-align:right;color:#74808c">1847億</td>
+          <td data-val="979736661.0" style="text-align:right;color:#56a7d8">10億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:96%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">96%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:78%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">78%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,7.7 13.0,2.8 26.0,13.7 39.0,17.5 52.0,17.9" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.9" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.53×</span></div></td>
+          <td data-val="-0.009009009009009028" style="text-align:right;color:#eb5757;font-weight:600">-0.9%</td>
+          <td data-val="-0.03083700440528636" style="text-align:right;color:#eb5757;font-weight:600">-3.1%</td>
+          <td data-val="0.12016293279022405" style="text-align:right;color:#6fcf97;font-weight:600">+12.0%</td>
+        </tr>
+        <tr>
+          <td data-val="3211" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:3211" target="_blank" class="sid-link">3211</a>
+              <span class="s-name">順達科技</span>
+            </div>
+          </td>
+          <td data-val="電腦週邊"><span style="background:#6fcf97;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電腦週邊</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="359.5" style="text-align:right;color:#eb5757">359.50</td>
+          <td data-val="55472647500.0" style="text-align:right;color:#74808c">555億</td>
+          <td data-val="3748216971.0" style="text-align:right;color:#56a7d8">37億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:86%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">86%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:16%;background:#74808c;height:7px;border-radius:3px"></div></div><span style="color:#74808c;font-size:13px;font-weight:600">16%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.0 13.0,8.7 26.0,13.8 39.0,15.6 52.0,17.7" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.7" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.63×</span></div></td>
+          <td data-val="-0.04260985352862845" style="text-align:right;color:#eb5757;font-weight:600">-4.3%</td>
+          <td data-val="-0.05766710353866322" style="text-align:right;color:#eb5757;font-weight:600">-5.8%</td>
+          <td data-val="0.031563845050215145" style="text-align:right;color:#6fcf97;font-weight:600">+3.2%</td>
+        </tr>
+        <tr>
+          <td data-val="4931" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:4931" target="_blank" class="sid-link">4931</a>
+              <span class="s-name">新盛力科技</span>
+            </div>
+          </td>
+          <td data-val="電腦週邊"><span style="background:#6fcf97;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電腦週邊</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="183.5" style="text-align:right;color:#eb5757">183.50</td>
+          <td data-val="12031324300.0" style="text-align:right;color:#74808c">120億</td>
+          <td data-val="4928768501.0" style="text-align:right;color:#56a7d8">49億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:90%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">90%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:69%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">69%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,5.8 13.0,3.2 26.0,8.3 39.0,11.0 52.0,17.5" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.5" r="2.8" fill="#eb5757"/></svg><span style="color:#8792a0;font-weight:600;font-size:11px">1.03×</span></div></td>
+          <td data-val="-0.07556675062972296" style="text-align:right;color:#eb5757;font-weight:600">-7.6%</td>
+          <td data-val="0.07941176470588229" style="text-align:right;color:#6fcf97;font-weight:600">+7.9%</td>
+          <td data-val="0.30604982206405684" style="text-align:right;color:#6fcf97;font-weight:600">+30.6%</td>
+        </tr>
+        <tr>
+          <td data-val="8210" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:8210" target="_blank" class="sid-link">8210</a>
+              <span class="s-name">勤誠興業</span>
+            </div>
+          </td>
+          <td data-val="電腦週邊"><span style="background:#6fcf97;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電腦週邊</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="1410.0" style="text-align:right;color:#eb5757">1410.00</td>
+          <td data-val="176700072000.0" style="text-align:right;color:#74808c">1767億</td>
+          <td data-val="2410927340.0" style="text-align:right;color:#56a7d8">24億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:90%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">90%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:72%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">72%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.0 13.0,13.0 26.0,16.0 39.0,16.5 52.0,17.8" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.8" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.51×</span></div></td>
+          <td data-val="-0.03424657534246578" style="text-align:right;color:#eb5757;font-weight:600">-3.4%</td>
+          <td data-val="-0.0035335689045936647" style="text-align:right;color:#eb5757;font-weight:600">-0.4%</td>
+          <td data-val="0.38235294117647056" style="text-align:right;color:#6fcf97;font-weight:600">+38.2%</td>
+        </tr>
+        <tr>
+          <td data-val="2441" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2441" target="_blank" class="sid-link">2441</a>
+              <span class="s-name">超豐電子</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="106.5" style="text-align:right;color:#6fcf97">106.50</td>
+          <td data-val="60582088350.0" style="text-align:right;color:#74808c">606億</td>
+          <td data-val="3915773706.0" style="text-align:right;color:#56a7d8">39億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:99%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">99%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.9 13.0,16.1 26.0,12.6 39.0,2.8 52.0,7.1" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="7.1" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">2.99×</span></div></td>
+          <td data-val="0.054455445544554504" style="text-align:right;color:#6fcf97;font-weight:600">+5.4%</td>
+          <td data-val="0.17679558011049723" style="text-align:right;color:#6fcf97;font-weight:600">+17.7%</td>
+          <td data-val="0.1899441340782122" style="text-align:right;color:#6fcf97;font-weight:600">+19.0%</td>
+        </tr>
+        <tr>
+          <td data-val="3529" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:3529" target="_blank" class="sid-link">3529</a>
+              <span class="s-name">力旺電子</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="3830.0" style="text-align:right;color:#eb5757">3830.00</td>
+          <td data-val="286049295000.0" style="text-align:right;color:#74808c">2860億</td>
+          <td data-val="1982027565.0" style="text-align:right;color:#56a7d8">20億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:81%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">81%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:12%;background:#74808c;height:7px;border-radius:3px"></div></div><span style="color:#74808c;font-size:13px;font-weight:600">12%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,2.9 13.0,10.4 26.0,12.3 39.0,15.5 52.0,17.8" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.8" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.50×</span></div></td>
+          <td data-val="-0.022959183673469385" style="text-align:right;color:#eb5757;font-weight:600">-2.3%</td>
+          <td data-val="-0.1164936562860438" style="text-align:right;color:#eb5757;font-weight:600">-11.6%</td>
+          <td data-val="0.03373819163292846" style="text-align:right;color:#6fcf97;font-weight:600">+3.4%</td>
+        </tr>
+        <tr>
+          <td data-val="5425" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:5425" target="_blank" class="sid-link">5425</a>
+              <span class="s-name">台灣半導體</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="72.0" style="text-align:right;color:#eb5757">72.00</td>
+          <td data-val="18970948800.0" style="text-align:right;color:#74808c">190億</td>
+          <td data-val="1077772414.0" style="text-align:right;color:#56a7d8">11億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:65%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">65%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:60%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">60%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,3.0 13.0,4.6 26.0,8.9 39.0,13.1 52.0,17.8" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.8" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.58×</span></div></td>
+          <td data-val="-0.009628610729023435" style="text-align:right;color:#eb5757;font-weight:600">-1.0%</td>
+          <td data-val="-0.013698630136986356" style="text-align:right;color:#eb5757;font-weight:600">-1.4%</td>
+          <td data-val="0.2040133779264215" style="text-align:right;color:#6fcf97;font-weight:600">+20.4%</td>
+        </tr>
+        <tr>
+          <td data-val="6239" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:6239" target="_blank" class="sid-link">6239</a>
+              <span class="s-name">力成科技</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="248.0" style="text-align:right;color:#6fcf97">248.00</td>
+          <td data-val="188268356800.0" style="text-align:right;color:#74808c">1883億</td>
+          <td data-val="14056697375.0" style="text-align:right;color:#56a7d8">141億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:94%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">94%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.5 13.0,17.8 26.0,17.1 39.0,12.7 52.0,3.0" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="3.0" r="2.8" fill="#6fcf97"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.94×</span></div></td>
+          <td data-val="0.08296943231441056" style="text-align:right;color:#6fcf97;font-weight:600">+8.3%</td>
+          <td data-val="0.11711711711711703" style="text-align:right;color:#6fcf97;font-weight:600">+11.7%</td>
+          <td data-val="0.1670588235294117" style="text-align:right;color:#6fcf97;font-weight:600">+16.7%</td>
+        </tr>
+        <tr>
+          <td data-val="6451" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:6451" target="_blank" class="sid-link">6451</a>
+              <span class="s-name">訊芯科技控股</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="577.0" style="text-align:right;color:#6fcf97">577.00</td>
+          <td data-val="62686549400.0" style="text-align:right;color:#74808c">627億</td>
+          <td data-val="3565189878.0" style="text-align:right;color:#56a7d8">36億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,15.9 13.0,17.6 26.0,14.7 39.0,3.3 52.0,3.1" fill="none" stroke="#74808c" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="3.1" r="2.8" fill="#74808c"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.58×</span></div></td>
+          <td data-val="0.09904761904761905" style="text-align:right;color:#6fcf97;font-weight:600">+9.9%</td>
+          <td data-val="0.308390022675737" style="text-align:right;color:#6fcf97;font-weight:600">+30.8%</td>
+          <td data-val="0.16801619433198378" style="text-align:right;color:#6fcf97;font-weight:600">+16.8%</td>
+        </tr>
+        <tr>
+          <td data-val="7769" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:7769" target="_blank" class="sid-link">7769</a>
+              <span class="s-name">鴻勁精密</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="6895.0" style="text-align:right;color:#eb5757">6895.00</td>
+          <td data-val="1240617350000.0" style="text-align:right;color:#74808c">1.2兆</td>
+          <td data-val="6010264365.0" style="text-align:right;color:#56a7d8">60億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:91%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">91%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:79%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">79%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.6 13.0,10.5 26.0,3.2 39.0,6.6 52.0,16.0" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="16.0" r="2.8" fill="#eb5757"/></svg><span style="color:#8792a0;font-weight:600;font-size:11px">0.96×</span></div></td>
+          <td data-val="-0.08796296296296291" style="text-align:right;color:#eb5757;font-weight:600">-8.8%</td>
+          <td data-val="0.18879310344827593" style="text-align:right;color:#6fcf97;font-weight:600">+18.9%</td>
+          <td data-val="0.6053550640279395" style="text-align:right;color:#6fcf97;font-weight:600">+60.5%</td>
+        </tr>
+        <tr>
+          <td data-val="8150" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:8150" target="_blank" class="sid-link">8150</a>
+              <span class="s-name">南茂科技</span>
+            </div>
+          </td>
+          <td data-val="半導體"><span style="background:#69bd7d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">半導體</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="80.9" style="text-align:right;color:#eb5757">80.90</td>
+          <td data-val="56995918790.00001" style="text-align:right;color:#74808c">570億</td>
+          <td data-val="1934826903.0" style="text-align:right;color:#56a7d8">19億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:82%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">82%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:44%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">44%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,2.9 13.0,10.8 26.0,17.2 39.0,17.8 52.0,17.4" fill="none" stroke="#74808c" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.4" r="2.8" fill="#74808c"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.41×</span></div></td>
+          <td data-val="-0.035756853396901045" style="text-align:right;color:#eb5757;font-weight:600">-3.6%</td>
+          <td data-val="-0.12729234088457386" style="text-align:right;color:#eb5757;font-weight:600">-12.7%</td>
+          <td data-val="0.09769335142469471" style="text-align:right;color:#6fcf97;font-weight:600">+9.8%</td>
+        </tr>
+        <tr>
+          <td data-val="3707" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:3707" target="_blank" class="sid-link">3707</a>
+              <span class="s-name">漢磊科技</span>
+            </div>
+          </td>
+          <td data-val="功率半導體"><span style="background:#6387d3;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">功率半導體</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="80.4" style="text-align:right;color:#6fcf97">80.40</td>
+          <td data-val="31876340760.0" style="text-align:right;color:#74808c">319億</td>
+          <td data-val="4216660856.0" style="text-align:right;color:#56a7d8">42億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:87%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">87%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,15.1 13.0,17.0 26.0,17.7 39.0,12.7 52.0,3.1" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="3.1" r="2.8" fill="#6fcf97"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.53×</span></div></td>
+          <td data-val="0.0050000000000001155" style="text-align:right;color:#6fcf97;font-weight:600">+0.5%</td>
+          <td data-val="0.09836065573770503" style="text-align:right;color:#6fcf97;font-weight:600">+9.8%</td>
+          <td data-val="0.46983546617915906" style="text-align:right;color:#6fcf97;font-weight:600">+47.0%</td>
+        </tr>
+        <tr>
+          <td data-val="2345" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2345" target="_blank" class="sid-link">2345</a>
+              <span class="s-name">智邦科技</span>
+            </div>
+          </td>
+          <td data-val="網通"><span style="background:#5db98d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">網通</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="2505.0" style="text-align:right;color:#eb5757">2505.00</td>
+          <td data-val="1405600339500.0" style="text-align:right;color:#74808c">1.4兆</td>
+          <td data-val="17949880315.0" style="text-align:right;color:#56a7d8">179億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:93%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">93%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:74%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">74%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,6.2 13.0,3.2 26.0,15.0 39.0,17.1 52.0,17.5" fill="none" stroke="#74808c" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.5" r="2.8" fill="#74808c"/></svg><span style="color:#df8a8a;font-weight:600;font-size:11px">0.76×</span></div></td>
+          <td data-val="-0.06355140186915886" style="text-align:right;color:#eb5757;font-weight:600">-6.4%</td>
+          <td data-val="0.054736842105263195" style="text-align:right;color:#6fcf97;font-weight:600">+5.5%</td>
+          <td data-val="0.23095823095823098" style="text-align:right;color:#6fcf97;font-weight:600">+23.1%</td>
+        </tr>
+        <tr>
+          <td data-val="2498" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2498" target="_blank" class="sid-link">2498</a>
+              <span class="s-name">宏達國際電子</span>
+            </div>
+          </td>
+          <td data-val="網通"><span style="background:#5db98d;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">網通</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="45.3" style="text-align:right;color:#6fcf97">45.30</td>
+          <td data-val="37873749029.99999" style="text-align:right;color:#74808c">379億</td>
+          <td data-val="3261672071.0" style="text-align:right;color:#56a7d8">33億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:60%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">60%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,15.2 13.0,13.7 26.0,17.7 39.0,14.6 52.0,3.1" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="3.1" r="2.8" fill="#6fcf97"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">3.35×</span></div></td>
+          <td data-val="0.027210884353741305" style="text-align:right;color:#6fcf97;font-weight:600">+2.7%</td>
+          <td data-val="0.1512071156289707" style="text-align:right;color:#6fcf97;font-weight:600">+15.1%</td>
+          <td data-val="0.09420289855072461" style="text-align:right;color:#6fcf97;font-weight:600">+9.4%</td>
+        </tr>
+        <tr>
+          <td data-val="2303" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2303" target="_blank" class="sid-link">2303</a>
+              <span class="s-name">聯華電子</span>
+            </div>
+          </td>
+          <td data-val="晶圓代工"><span style="background:#5f86d6;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">晶圓代工</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="110.0" style="text-align:right;color:#6fcf97">110.00</td>
+          <td data-val="1383637706000.0" style="text-align:right;color:#74808c">1.4兆</td>
+          <td data-val="46441717464.0" style="text-align:right;color:#56a7d8">464億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,13.9 13.0,16.5 26.0,14.0 39.0,4.1 52.0,5.4" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="5.4" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.53×</span></div></td>
+          <td data-val="0.0185185185185186" style="text-align:right;color:#6fcf97;font-weight:600">+1.9%</td>
+          <td data-val="0.20481927710843384" style="text-align:right;color:#6fcf97;font-weight:600">+20.5%</td>
+          <td data-val="0.6105417276720353" style="text-align:right;color:#6fcf97;font-weight:600">+61.1%</td>
+        </tr>
+        <tr>
+          <td data-val="6770" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:6770" target="_blank" class="sid-link">6770</a>
+              <span class="s-name">力晶積成電子製造</span>
+            </div>
+          </td>
+          <td data-val="晶圓代工"><span style="background:#5f86d6;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">晶圓代工</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="62.8" style="text-align:right;color:#6fcf97">62.80</td>
+          <td data-val="266510872359.99997" style="text-align:right;color:#74808c">2665億</td>
+          <td data-val="22974440367.0" style="text-align:right;color:#56a7d8">230億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:81%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">81%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:91%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">91%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,2.9 13.0,11.0 26.0,17.0 39.0,17.8 52.0,15.8" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="15.8" r="2.8" fill="#6fcf97"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.74×</span></div></td>
+          <td data-val="0.009646302250803762" style="text-align:right;color:#6fcf97;font-weight:600">+1.0%</td>
+          <td data-val="0.0228013029315961" style="text-align:right;color:#6fcf97;font-weight:600">+2.3%</td>
+          <td data-val="0.16296296296296298" style="text-align:right;color:#6fcf97;font-weight:600">+16.3%</td>
+        </tr>
+        <tr>
+          <td data-val="3305" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3305" target="_blank" class="sid-link">3305</a>
+              <span class="s-name">昇貿科技</span>
+            </div>
+          </td>
+          <td data-val="其他電子"><span style="background:#74808c;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">其他電子</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="138.5" style="text-align:right;color:#6fcf97">138.50</td>
+          <td data-val="20032044450.0" style="text-align:right;color:#74808c">200億</td>
+          <td data-val="2870349700.0" style="text-align:right;color:#56a7d8">29億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:89%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">89%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:100%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">100%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.5 13.0,16.9 26.0,12.4 39.0,3.2 52.0,13.3" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="13.3" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">2.14×</span></div></td>
+          <td data-val="0.0992063492063493" style="text-align:right;color:#6fcf97;font-weight:600">+9.9%</td>
+          <td data-val="0.20434782608695645" style="text-align:right;color:#6fcf97;font-weight:600">+20.4%</td>
+          <td data-val="0.1446280991735538" style="text-align:right;color:#6fcf97;font-weight:600">+14.5%</td>
+        </tr>
+        <tr>
+          <td data-val="3587" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TPEX:3587" target="_blank" class="sid-link">3587</a>
+              <span class="s-name">閎康科技</span>
+            </div>
+          </td>
+          <td data-val="其他電子"><span style="background:#74808c;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">其他電子</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="353.0" style="text-align:right;color:#eb5757">353.00</td>
+          <td data-val="23825735000.0" style="text-align:right;color:#74808c">238億</td>
+          <td data-val="1471972363.0" style="text-align:right;color:#56a7d8">15億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:89%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">89%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:48%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">48%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.7 13.0,14.7 26.0,7.5 39.0,3.0 52.0,11.7" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="11.7" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">2.02×</span></div></td>
+          <td data-val="-0.04336043360433606" style="text-align:right;color:#eb5757;font-weight:600">-4.3%</td>
+          <td data-val="0.10658307210031337" style="text-align:right;color:#6fcf97;font-weight:600">+10.7%</td>
+          <td data-val="0.05688622754491024" style="text-align:right;color:#6fcf97;font-weight:600">+5.7%</td>
+        </tr>
+        <tr>
+          <td data-val="2059" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2059" target="_blank" class="sid-link">2059</a>
+              <span class="s-name">川湖科技</span>
+            </div>
+          </td>
+          <td data-val="電子零組件"><span style="background:#8fbd60;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電子零組件</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="4860.0" style="text-align:right;color:#eb5757">4860.00</td>
+          <td data-val="463143906000.0" style="text-align:right;color:#74808c">4631億</td>
+          <td data-val="1357175045.0" style="text-align:right;color:#56a7d8">14億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:88%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">88%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:68%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">68%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,6.0 13.0,2.8 26.0,11.3 39.0,16.2 52.0,17.9" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="17.9" r="2.8" fill="#eb5757"/></svg><span style="color:#eb5757;font-weight:600;font-size:11px">0.21×</span></div></td>
+          <td data-val="-0.029940119760479056" style="text-align:right;color:#eb5757;font-weight:600">-3.0%</td>
+          <td data-val="-0.0864661654135338" style="text-align:right;color:#eb5757;font-weight:600">-8.6%</td>
+          <td data-val="0.4107402031930334" style="text-align:right;color:#6fcf97;font-weight:600">+41.1%</td>
+        </tr>
+        <tr>
+          <td data-val="3645" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:3645" target="_blank" class="sid-link">3645</a>
+              <span class="s-name">達邁科技</span>
+            </div>
+          </td>
+          <td data-val="電子零組件"><span style="background:#8fbd60;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">電子零組件</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="106.0" style="text-align:right;color:#eb5757">106.00</td>
+          <td data-val="14495945200.0" style="text-align:right;color:#74808c">145億</td>
+          <td data-val="2528977377.0" style="text-align:right;color:#56a7d8">25億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:92%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">92%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:58%;background:#9b8fd3;height:7px;border-radius:3px"></div></div><span style="color:#9b8fd3;font-size:13px;font-weight:600">58%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,17.7 13.0,12.3 26.0,10.9 39.0,3.0 52.0,8.7" fill="none" stroke="#eb5757" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="8.7" r="2.8" fill="#eb5757"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">2.09×</span></div></td>
+          <td data-val="-0.0535714285714286" style="text-align:right;color:#eb5757;font-weight:600">-5.4%</td>
+          <td data-val="0.12646121147715195" style="text-align:right;color:#6fcf97;font-weight:600">+12.6%</td>
+          <td data-val="0.054726368159204064" style="text-align:right;color:#6fcf97;font-weight:600">+5.5%</td>
+        </tr>
+        <tr>
+          <td data-val="2344" data-core="0">
+            <div class="stock-cell">
+              <a href="https://www.tradingview.com/chart/?symbol=TWSE:2344" target="_blank" class="sid-link">2344</a>
+              <span class="s-name">華邦電子</span>
+            </div>
+          </td>
+          <td data-val="記憶體"><span style="background:#527bd0;color:#fff;padding:1px 7px;border-radius:9px;font-size:11px;white-space:nowrap">記憶體</span></td>
+          <td data-val="1" style="color:#9a8f72;font-weight:700;text-align:center">1天</td>
+          <td data-val="129.5" style="text-align:right;color:#eb5757">129.50</td>
+          <td data-val="582750025900.0" style="text-align:right;color:#74808c">5828億</td>
+          <td data-val="45582895836.0" style="text-align:right;color:#56a7d8">456億</td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:96%;background:#6fcf97;height:7px;border-radius:3px"></div></div><span style="color:#6fcf97;font-size:13px;font-weight:600">96%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><div style="width:48px;background:#2b3540;border-radius:3px;height:7px"><div style="width:90%;background:#56a7d8;height:7px;border-radius:3px"></div></div><span style="color:#56a7d8;font-size:13px;font-weight:600">90%</span></div></td>
+          <td><div style="display:flex;align-items:center;gap:5px"><svg width="52" height="20" style="overflow:visible;vertical-align:middle"><polyline points="0.0,10.7 13.0,16.4 26.0,17.1 39.0,5.8 52.0,3.6" fill="none" stroke="#6fcf97" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="3.6" r="2.8" fill="#6fcf97"/></svg><span style="color:#6fcf97;font-weight:600;font-size:11px">1.53×</span></div></td>
+          <td data-val="-0.03358208955223885" style="text-align:right;color:#eb5757;font-weight:600">-3.4%</td>
+          <td data-val="0.21028037383177578" style="text-align:right;color:#6fcf97;font-weight:600">+21.0%</td>
+          <td data-val="0.4453125" style="text-align:right;color:#6fcf97;font-weight:600">+44.5%</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 右欄 ══ -->
+<div class="sidebar">
+  <div class="sd-title">個股索引</div>
+  <div class="sd-hint">
+    <span style="color:#d6a85b">■</span> 琥珀色 = 核心股（≥2天）・上標 = 出現天數<br>
+    點擊族群展開 ・ 點左欄列自動定位
+  </div>
+  <div id="sidx">
+        <div class="sidx-g" data-theme="半導體">
+          <div class="sidx-h open" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#69bd7d">半導體</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#d6a85b20;color:#d6a85b;border:1px solid #d6a85b40">5天</span>
+              <span class="sidx-cnt">14檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b open"><a href="https://www.tradingview.com/chart/?symbol=TPEX:3374" target="_blank" class="sidx-s core">3374 精材科技<sup class="dbadge">3</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:3583" target="_blank" class="sidx-s core">3583 辛耘企業<sup class="dbadge">3</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:6531" target="_blank" class="sidx-s core">6531 愛普科技<sup class="dbadge">3</sup></a><a href="https://www.tradingview.com/chart/?symbol=TPEX:7734" target="_blank" class="sidx-s core">7734 印能科技<sup class="dbadge">3</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:3035" target="_blank" class="sidx-s core">3035 智原科技<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TPEX:4749" target="_blank" class="sidx-s core">4749 新應材<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TPEX:5351" target="_blank" class="sidx-s core">5351 鈺創科技<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:2441" target="_blank" class="sidx-s">2441 超豐電子</a><a href="https://www.tradingview.com/chart/?symbol=TPEX:3529" target="_blank" class="sidx-s">3529 力旺電子</a><a href="https://www.tradingview.com/chart/?symbol=TPEX:5425" target="_blank" class="sidx-s">5425 台灣半導體</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:6239" target="_blank" class="sidx-s">6239 力成科技</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:6451" target="_blank" class="sidx-s">6451 訊芯科技控股</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:7769" target="_blank" class="sidx-s">7769 鴻勁精密</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:8150" target="_blank" class="sidx-s">8150 南茂科技</a></div>
+        </div>
+        <div class="sidx-g" data-theme="IC設計">
+          <div class="sidx-h open" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#6d8fd8">IC設計</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#d6a85b20;color:#d6a85b;border:1px solid #d6a85b40">4天</span>
+              <span class="sidx-cnt">6檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b open"><a href="https://www.tradingview.com/chart/?symbol=TPEX:4966" target="_blank" class="sidx-s core">4966 譜瑞科技<sup class="dbadge">4</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:5269" target="_blank" class="sidx-s core">5269 祥碩科技<sup class="dbadge">3</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:6415" target="_blank" class="sidx-s core">6415 矽力杰<sup class="dbadge">3</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:2379" target="_blank" class="sidx-s core">2379 瑞昱半導體<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:3034" target="_blank" class="sidx-s core">3034 聯詠科技<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:4919" target="_blank" class="sidx-s core">4919 新唐科技<sup class="dbadge">2</sup></a></div>
+        </div>
+        <div class="sidx-g" data-theme="光電">
+          <div class="sidx-h open" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#d4a04e">光電</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#d6a85b20;color:#d6a85b;border:1px solid #d6a85b40">4天</span>
+              <span class="sidx-cnt">6檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b open"><a href="https://www.tradingview.com/chart/?symbol=TWSE:3008" target="_blank" class="sidx-s core">3008 大立光電<sup class="dbadge">3</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:3406" target="_blank" class="sidx-s">3406 玉晶光電</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:3673" target="_blank" class="sidx-s">3673 TPK Holding Co. Ltd.</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:6116" target="_blank" class="sidx-s">6116 瀚宇彩晶</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:6278" target="_blank" class="sidx-s">6278 台灣表面黏著科技</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:6443" target="_blank" class="sidx-s">6443 元晶太陽能科技</a></div>
+        </div>
+        <div class="sidx-g" data-theme="電腦週邊">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#6fcf97">電腦週邊</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#d6a85b20;color:#d6a85b;border:1px solid #d6a85b40">5天</span>
+              <span class="sidx-cnt">4檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:2377" target="_blank" class="sidx-s core">2377 微星科技<sup class="dbadge">5</sup></a><a href="https://www.tradingview.com/chart/?symbol=TPEX:3211" target="_blank" class="sidx-s">3211 順達科技</a><a href="https://www.tradingview.com/chart/?symbol=TPEX:4931" target="_blank" class="sidx-s">4931 新盛力科技</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:8210" target="_blank" class="sidx-s">8210 勤誠興業</a></div>
+        </div>
+        <div class="sidx-g" data-theme="面板">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#c99a4e">面板</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#d6a85b20;color:#d6a85b;border:1px solid #d6a85b40">4天</span>
+              <span class="sidx-cnt">3檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TPEX:8069" target="_blank" class="sidx-s core">8069 元太科技工業<sup class="dbadge">3</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:2409" target="_blank" class="sidx-s core">2409 友達光電<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:3481" target="_blank" class="sidx-s core">3481 群創光電<sup class="dbadge">2</sup></a></div>
+        </div>
+        <div class="sidx-g" data-theme="電子零組件">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#8fbd60">電子零組件</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#d6a85b20;color:#d6a85b;border:1px solid #d6a85b40">4天</span>
+              <span class="sidx-cnt">4檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TPEX:6217" target="_blank" class="sidx-s core">6217 中國探針<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:6781" target="_blank" class="sidx-s core">6781 AES Holding Co. Ltd.<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:2059" target="_blank" class="sidx-s">2059 川湖科技</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:3645" target="_blank" class="sidx-s">3645 達邁科技</a></div>
+        </div>
+        <div class="sidx-g" data-theme="被動元件">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#8f8980">被動元件</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#9a8f7220;color:#9a8f72;border:1px solid #9a8f7240">3天</span>
+              <span class="sidx-cnt">4檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:2472" target="_blank" class="sidx-s core">2472 立隆電子工業<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:2492" target="_blank" class="sidx-s">2492 華新科技</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:3026" target="_blank" class="sidx-s">3026 禾伸堂企業</a><a href="https://www.tradingview.com/chart/?symbol=TPEX:3357" target="_blank" class="sidx-s">3357 西北臺慶科技</a></div>
+        </div>
+        <div class="sidx-g" data-theme="電子通路">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#65717e">電子通路</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#d6a85b20;color:#d6a85b;border:1px solid #d6a85b40">4天</span>
+              <span class="sidx-cnt">2檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:3036" target="_blank" class="sidx-s core">3036 文曄科技<sup class="dbadge">4</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:3702" target="_blank" class="sidx-s">3702 大聯大控股</a></div>
+        </div>
+        <div class="sidx-g" data-theme="功率半導體">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#6387d3">功率半導體</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#d6a85b20;color:#d6a85b;border:1px solid #d6a85b40">4天</span>
+              <span class="sidx-cnt">2檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:2481" target="_blank" class="sidx-s core">2481 強茂<sup class="dbadge">4</sup></a><a href="https://www.tradingview.com/chart/?symbol=TPEX:3707" target="_blank" class="sidx-s">3707 漢磊科技</a></div>
+        </div>
+        <div class="sidx-g" data-theme="網通">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#5db98d">網通</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#d6a85b20;color:#d6a85b;border:1px solid #d6a85b40">4天</span>
+              <span class="sidx-cnt">3檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:4977" target="_blank" class="sidx-s core">4977 眾達科技<sup class="dbadge">2</sup></a><a href="https://www.tradingview.com/chart/?symbol=TWSE:2345" target="_blank" class="sidx-s">2345 智邦科技</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:2498" target="_blank" class="sidx-s">2498 宏達國際電子</a></div>
+        </div>
+        <div class="sidx-g" data-theme="PCB/載板">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#4869a8">PCB/載板</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#9a8f7220;color:#9a8f72;border:1px solid #9a8f7240">2天</span>
+              <span class="sidx-cnt">2檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:3044" target="_blank" class="sidx-s">3044 健鼎科技</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:4958" target="_blank" class="sidx-s">4958 臻鼎科技控股</a></div>
+        </div>
+        <div class="sidx-g" data-theme="電機">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#9b8fd3">電機</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#9a8f7220;color:#9a8f72;border:1px solid #9a8f7240">2天</span>
+              <span class="sidx-cnt">1檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:2049" target="_blank" class="sidx-s core">2049 上銀科技<sup class="dbadge">2</sup></a></div>
+        </div>
+        <div class="sidx-g" data-theme="晶圓代工">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#5f86d6">晶圓代工</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#9a8f7220;color:#9a8f72;border:1px solid #9a8f7240">2天</span>
+              <span class="sidx-cnt">2檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:2303" target="_blank" class="sidx-s">2303 聯華電子</a><a href="https://www.tradingview.com/chart/?symbol=TWSE:6770" target="_blank" class="sidx-s">6770 力晶積成電子製造</a></div>
+        </div>
+        <div class="sidx-g" data-theme="其他電子">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#74808c">其他電子</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#74808c20;color:#74808c;border:1px solid #74808c40">1天</span>
+              <span class="sidx-cnt">2檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:3305" target="_blank" class="sidx-s">3305 昇貿科技</a><a href="https://www.tradingview.com/chart/?symbol=TPEX:3587" target="_blank" class="sidx-s">3587 閎康科技</a></div>
+        </div>
+        <div class="sidx-g" data-theme="伺服器/AI">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#4299b4">伺服器/AI</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#74808c20;color:#74808c;border:1px solid #74808c40">1天</span>
+              <span class="sidx-cnt">1檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:2356" target="_blank" class="sidx-s">2356 英業達</a></div>
+        </div>
+        <div class="sidx-g" data-theme="品牌PC/NB">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#74808c">品牌PC/NB</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#74808c20;color:#74808c;border:1px solid #74808c40">1天</span>
+              <span class="sidx-cnt">1檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:2357" target="_blank" class="sidx-s">2357 華碩電腦</a></div>
+        </div>
+        <div class="sidx-g" data-theme="記憶體">
+          <div class="sidx-h" onclick="toggleSidebar(this)">
+            <span class="sidx-theme" style="color:#527bd0">記憶體</span>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span class="sidx-badge" style="background:#74808c20;color:#74808c;border:1px solid #74808c40">1天</span>
+              <span class="sidx-cnt">1檔</span>
+              <span class="sidx-arr">▼</span>
+            </div>
+          </div>
+          <div class="sidx-b"><a href="https://www.tradingview.com/chart/?symbol=TWSE:2344" target="_blank" class="sidx-s">2344 華邦電子</a></div>
+        </div></div>
+</div>
+</div>
+
+<script>
+// ── Sidebar toggle ──
+function toggleSidebar(hdr) {
+  hdr.classList.toggle('open');
+  hdr.nextElementSibling.classList.toggle('open');
+}
+function filterSidebar(theme) {
+  const sidx = document.getElementById('sidx');
+  document.querySelectorAll('.sidx-g').forEach(g => {
+    const match = g.dataset.theme === theme;
+    g.classList.toggle('hi', match);
+    if (match) {
+      const h = g.querySelector('.sidx-h');
+      const b = g.querySelector('.sidx-b');
+      h.classList.add('open'); b.classList.add('open');
+      sidx.insertBefore(g, sidx.firstChild);
+      sidx.scrollTop = 0;
+    }
+  });
+}
+
+// ── Table search ──
+function filterTable() {
+  const q = document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('#stk-tbl tbody tr').forEach(r => {
+    r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+// ── Sort helpers ──
+let rankDir = {}, stkDir = {};
+
+function sortByCol(tbodyId, thEl, col, dirMap) {
+  const tbody = document.querySelector('#' + tbodyId + ' tbody');
+  const rows  = Array.from(tbody.querySelectorAll('tr'));
+  const dir   = dirMap[col] = -(dirMap[col] || 1);
+  rows.sort((a, b) => {
+    const as = a.cells[col]?.dataset.val ?? '';
+    const bs = b.cells[col]?.dataset.val ?? '';
+    const av = parseFloat(as), bv = parseFloat(bs);
+    if (isNaN(av) || isNaN(bv)) return as.localeCompare(bs, 'zh-TW') * dir;
+    return (av - bv) * dir;
+  });
+  rows.forEach(r => tbody.appendChild(r));
+  tbody.closest('table').querySelectorAll('th').forEach(h => h.className = h.className.replace(/sort-(asc|desc)/g,'').trim());
+  thEl.classList.add(dir === 1 ? 'sort-asc' : 'sort-desc');
+}
+
+function sortRank(th, col) { sortByCol('rk-tbl', th, col, rankDir); }
+let col0Mode = -1;
+function sortStk(th, col) {
+  if (col === 0) {
+    col0Mode = (col0Mode + 1) % 2;
+    const tbody = document.querySelector('#stk-tbl tbody');
+    const rows  = Array.from(tbody.querySelectorAll('tr'));
+    if (col0Mode === 0) {
+      rows.sort((a, b) => {
+        const ca = +(a.cells[0].dataset.core || 0);
+        const cb = +(b.cells[0].dataset.core || 0);
+        if (ca !== cb) return cb - ca;
+        return (a.cells[0].dataset.val || '').localeCompare(b.cells[0].dataset.val || '');
+      });
+      tbody.closest('table').querySelectorAll('th').forEach(h => h.className = h.className.replace(/sort-(asc|desc)/g,'').trim());
+      th.classList.add('sort-desc');
+    } else {
+      rows.sort((a, b) => (a.cells[0].dataset.val || '').localeCompare(b.cells[0].dataset.val || ''));
+      tbody.closest('table').querySelectorAll('th').forEach(h => h.className = h.className.replace(/sort-(asc|desc)/g,'').trim());
+      th.classList.add('sort-asc');
+    }
+    rows.forEach(r => tbody.appendChild(r));
+  } else {
+    sortByCol('stk-tbl', th, col, stkDir);
+  }
+}
+
+// ── CSV 匯出 ──
+function exportCSV() {
+  const headers = ['代號','名稱','族群','上榜天數','成交價','市值(億)','成交值(億)','放量位置%','月內位置%','加速(最新)','1日%','5日%','20日%'];
+  const rows = [headers.join(',')];
+  document.querySelectorAll('#stk-tbl tbody tr').forEach(tr => {
+    if (tr.style.display === 'none') return;
+    const c = tr.cells;
+    const sid   = c[0].dataset.val || '';
+    const name  = c[0].querySelector('.s-name')?.innerText.trim() || '';
+    const theme = c[1].dataset.val || '';
+    const days  = c[2].dataset.val || '';
+    const price = c[3].dataset.val || '';
+    const mc_raw = parseFloat(c[4].dataset.val);
+    const tv_raw = parseFloat(c[5].dataset.val);
+    const mc  = isNaN(mc_raw) || mc_raw <= 0 ? '' : (mc_raw / 1e8).toFixed(0);
+    const tv  = isNaN(tv_raw) || tv_raw <= 0 ? '' : (tv_raw / 1e8).toFixed(0);
+    const pp_m = c[6].innerText.match(/(\d+)%/);
+    const mp_m = c[7].innerText.match(/(\d+)%/);
+    const pp  = pp_m ? pp_m[1] + '%' : '';
+    const mp  = mp_m ? mp_m[1] + '%' : '';
+    const ac  = c[8].innerText.replace(/[^\d.×]/g,'').trim() || '';
+    const fmt = v => { const n = parseFloat(v); return isNaN(n) || n <= -900 ? '' : (n * 100).toFixed(1) + '%'; };
+    const r1  = fmt(c[9].dataset.val);
+    const r5  = fmt(c[10].dataset.val);
+    const r20 = fmt(c[11].dataset.val);
+    rows.push([sid,name,theme,days,price,mc,tv,pp,mp,ac,r1,r5,r20].map(v=>`"${v}"`).join(','));
+  });
+  const blob = new Blob(['﻿' + rows.join('\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `熱門股週報_2026-05-15.csv`;
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+// ── Init: open first 3 sidebar groups ──
+document.querySelectorAll('.sidx-g').forEach((g, i) => {
+  if (i < 3) {
+    g.querySelector('.sidx-h').classList.add('open');
+    g.querySelector('.sidx-b').classList.add('open');
+  }
+});
+</script>
+</body>
+</html>
